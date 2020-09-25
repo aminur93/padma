@@ -30073,3 +30073,7 @@ a.text-dark:focus {
   }
 }
 
+.invalid-feedback {
+  display: inline-block !important;
+}
+

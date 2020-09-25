@@ -26,7 +26,8 @@
                 <form v-on:submit.prevent="createCategory">
                     <div class="form-group">
                         <label for="name">Name :</label>
-                        <input type="text" v-model="categoryData.name" class="form-control" placeholder="Enter Category Name">
+                        <input type="text" v-model="categoryData.name" class="form-control" id="name" placeholder="Enter Category Name">
+                        <div class="invalid-feedback" v-if="errors.name">{{ errors.name[0] }}</div>
                     </div>
 
                     <router-link to="/category" class="btn btn-info">Back</router-link>
@@ -47,11 +48,13 @@
             return{
                 categoryData: {
                     name: ''
-                }
+                },
+                errors: {},
             }
         },
 
         methods: {
+
             createCategory: async function()
             {
                 try {
@@ -59,8 +62,6 @@
                     formData.append('name', this.categoryData.name);
 
                     const response = await categoryServices.addCategory(formData);
-                    console.log(response);
-
 
                    this.$swal.fire({
                         position: 'top-end',
@@ -72,7 +73,20 @@
 
                     this.categoryData.name = '';
                 }catch (error){
-                    console.log(error);
+                    switch (error.response.status)
+                    {
+                        case 422:
+                            this.errors = error.response.data.errors;
+                            break;
+
+                        default:
+                            this.$swal.fire({
+                                icon: 'error',
+                                text: 'Oops',
+                                title: error.response.data.message,
+                            });
+                            break;
+                    }
                 }
 
             }

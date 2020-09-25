@@ -20,7 +20,8 @@ Vue.component('admin-main', () => import("./components/admin/AdminMaster.vue"));
 const router = new VueRouter({
     routes,
     mode: 'history',
-    linkActiveClass: 'active'
+    linkActiveClass: 'active',
+    linkExactActiveClass: 'active'
 });
 
 

@@ -98,6 +98,20 @@
                         </router-link>
                     </li>
 
+                    <li class="nav-item has-treeview">
+                        <router-link to="/sub_category" class="nav-link" exact>
+                            <i class="nav-icon fas fa-tags"></i>
+                            <p>Sub Category</p>
+                        </router-link>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <router-link to="/blog_post" class="nav-link" exact>
+                            <i class="nav-icon fas fa-bacon"></i>
+                            <p>Blog Post</p>
+                        </router-link>
+                    </li>
+
 
                     <li class="nav-item has-treeview">
                         <router-link to="#" class="nav-link" exact>
@@ -110,21 +124,21 @@
 
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <router-link to="" class="nav-link" exact>
+                                <router-link to="/user" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Users</p>
                                 </router-link>
                             </li>
 
                             <li class="nav-item">
-                                <router-link to="" class="nav-link" exact>
+                                <router-link to="/role" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Roles</p>
                                 </router-link>
                             </li>
 
                             <li class="nav-item">
-                                <router-link to="" class="nav-link" exact>
+                                <router-link to="/permission" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Permissions</p>
                                 </router-link>

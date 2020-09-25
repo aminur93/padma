@@ -32,7 +32,26 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Category Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
 
+                        <tbody>
+                            <tr v-for="(category,index) in categories" :key="index">
+                                <th>{{ index + 1}}</th>
+                                <th>{{ category.name }}</th>
+                                <th>
+                                    <router-link :to="`/edit_category/${category.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>
+                                    <button v-on:click="deleteCategory(category)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -48,8 +67,47 @@
 </template>
 
 <script>
+    import * as categoryServices from '../../../services/category_services';
     export default{
+        name: 'category',
+        data(){
+            return{
+                categories: [],
+            }
+        },
 
+        mounted()
+        {
+            this.loadCategory();
+        },
+
+        methods: {
+            loadCategory: async function(){
+                try{
+                    const response = await categoryServices.loadcategory();
+                    this.categories = response.data.category;
+                }catch (error){
+                    console.log(error);
+                }
+            },
+
+            deleteCategory: async function(category)
+            {
+                try {
+                    const response = await categoryServices.deleteCategories(category.id);
+                    this.$swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    this.loadCategory();
+                }catch (error){
+                    console.log(error);
+                }
+            }
+        }
     }
 </script>
 

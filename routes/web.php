@@ -19,9 +19,41 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/{any}', 'HomeController@index')->name('home')->where('any','.*');
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function (){
 
+    //category Routes
+    Route::get('/category/getData','CategoryController@getCategory');
     Route::post('/category/store','CategoryController@store');
+    Route::get('/category/edit/{id}','CategoryController@edit');
+    Route::post('/category/update/{id}','CategoryController@update');
+    Route::delete('/category/destroy/{id}','CategoryController@destroy');
+
+    //User Routes
+    Route::get('/user/get_role','UserController@getRole');
+    Route::get('/user/get_user','UserController@getUser');
+    Route::post('/user/store','UserController@store');
+    Route::get('/user/edit/{id}','UserController@edit');
+    Route::post('/user/update/{id}','UserController@update');
+    Route::delete('/user/destroy/{id}','UserController@destroy');
+
+    //Roles Routes
+    Route::post('/roles/store','RolesController@store');
+    Route::get('/roles/getPermission','RolesController@getPermission');
+    Route::get('/roles/getData','RolesController@getData');
+    Route::get('/roles/edit/{id}','RolesController@edit');
+    Route::post('/roles/update/{id}','RolesController@update');
+    Route::delete('/role/destroy/{id}','RolesController@destroy');
+
+    //Permission Routes
+    Route::get('/permission/getData','PermissionsController@getPermission');
+    Route::post('/permission/store','PermissionsController@store');
+    Route::get('/permission/edit/{id}','PermissionsController@edit');
+    Route::post('/permission/update/{id}','PermissionsController@update');
+    Route::delete('/permission/destroy/{id}','PermissionsController@destroy');
+
 });
+
+Route::get('/{any}', 'HomeController@index')->name('home')->where('any','.*');

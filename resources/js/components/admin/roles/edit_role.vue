@@ -88,8 +88,9 @@
                     let id = this.$route.params.id;
 
                     const response = await roleServices.getAllData(id);
-
+                    console.log(response);
                     this.editRoleDataName = response.data.roles;
+
                     this.editPermissionDataName = response.data.rolePermission;
 
                 }catch (error){

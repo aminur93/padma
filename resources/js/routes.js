@@ -4,10 +4,25 @@
 
 import AdminHome from './components/admin/AdminHome.vue';
 
+//tag Routes
+import Tag from './components/admin/tags/tag.vue';
+import AddTag from './components/admin/tags/add_tag.vue';
+import EditTag from './components/admin/tags/edit_tag.vue';
+
 //Category Routes
 import Category from './components/admin/category/category.vue';
 import AddCategory from './components/admin/category/add_category.vue';
 import EditCategory from './components/admin/category/edit_category.vue';
+
+//Sub Categories Routes
+import SubCategories from './components/admin/sub_category/sub_cat.vue';
+import AddSubCat from './components/admin/sub_category/add_sub_cat.vue';
+import EditSubCat from './components/admin/sub_category/edit_sub_cat.vue';
+
+//Blog Post Routes
+import BlogPost from './components/admin/blog_post/blog_post.vue';
+import AddBlogPost from './components/admin/blog_post/add_Post.vue';
+import EditBlogPost from './components/admin/blog_post/edit_post.vue';
 
 //roles and permission
 import Permission from './components/admin/permissions/permission.vue';
@@ -30,6 +45,26 @@ export const routes = [
         component: AdminHome
     },
 
+    /*tag routes start*/
+    {
+        path: '/tag',
+        name: 'tag',
+        component: Tag
+    },
+    {
+        path: '/add_tag',
+        name: 'add_tag',
+        component: AddTag
+    },
+    {
+        path: '/edit_tag/:id',
+        name: 'edit_tag',
+        component: EditTag
+    },
+    /*tag routes end*/
+
+    /*Categories Route Start*/
+
     {
         path: '/category',
         name: 'category',
@@ -47,6 +82,44 @@ export const routes = [
         name: 'edit_category',
         component: EditCategory
     },
+
+    /*Categories Route Start*/
+
+    /*Sub Categories Route Start*/
+    {
+        path: '/sub_categories',
+        name: 'sub_categories',
+        component: SubCategories
+    },
+    {
+        path: '/add_sub_cat',
+        name: 'add_sub_cat',
+        component: AddSubCat
+    },
+    {
+        path: '/edit_sub_vat/:id',
+        name: 'edit_sub_cat',
+        component: EditSubCat
+    },
+    /*Sub Categories Route End*/
+
+    /*Start Blog post Routes*/
+    {
+        path: '/blog_post',
+        name: 'blog_post',
+        component: BlogPost
+    },
+    {
+        path: '/add_post',
+        name: 'add_post',
+        component: AddBlogPost
+    },
+    {
+        path: '/edit_post',
+        name: 'edit_post',
+        component: EditBlogPost
+    },
+    /*end Blog post Routes*/
 
     /*
      * this is permission routes list

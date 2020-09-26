@@ -99,9 +99,16 @@
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <router-link to="/sub_category" class="nav-link" exact>
-                            <i class="nav-icon fas fa-tags"></i>
+                        <router-link to="/sub_categories" class="nav-link" exact>
+                            <i class="nav-icon fa fa-list-alt"></i>
                             <p>Sub Category</p>
+                        </router-link>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <router-link to="/tag" class="nav-link" exact>
+                            <i class="nav-icon fas fa-tags"></i>
+                            <p>Tag</p>
                         </router-link>
                     </li>
 
@@ -112,7 +119,7 @@
                         </router-link>
                     </li>
 
-
+                    @hasrole('admin')
                     <li class="nav-item has-treeview">
                         <router-link to="#" class="nav-link" exact>
                             <i class="nav-icon fas fa-users-cog"></i>
@@ -145,7 +152,7 @@
                             </li>
                         </ul>
                     </li>
-
+                    @endhasrole
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

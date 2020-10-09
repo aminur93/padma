@@ -55,6 +55,12 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/blog/edit/{id}','BlogPostController@edit');
     Route::post('/blog/update/{id}','BlogPostController@update');
     Route::delete('/blog/destroy/{id}','BlogPostController@destroy');
+    Route::post('/blog/approve/{id}','BlogPostController@approve');
+    Route::post('/blog/unapprove/{id}','BlogPostController@unapprove');
+    Route::post('/blog/publish/{id}','BlogPostController@publish');
+    Route::post('/blog/unpublish/{id}','BlogPostController@unpublish');
+    Route::post('/blog/feature/{id}','BlogPostController@feature');
+    Route::post('/blog/unfeature/{id}','BlogPostController@unfeature');
 
     //User Routes
     Route::get('/frontend/get_role','UserController@getRole');

@@ -267,4 +267,63 @@ class BlogPostController extends Controller
             'status_code' => 200
         ],200);
     }
+
+    public function approve($id)
+    {
+        BlogPost::where('id',$id)->update(['blog_status' => 1]);
+
+        return response()->json([
+            'message' => 'Blog Post Approve Successfully',
+            'status_code' => 200
+        ],200);
+    }
+
+    public function unapprove($id)
+    {
+        BlogPost::where('id',$id)->update(['blog_status' => 0]);
+
+        return response()->json([
+            'message' => 'Blog Post UnApprove Successfully',
+            'status_code' => 200
+        ],200);
+    }
+
+    public function publish($id)
+    {
+        BlogPost::where('id',$id)->update(['publish' => 1]);
+
+        return response()->json([
+            'message' => 'Blog Post Publish Successfully',
+            'status_code' => 200
+        ],200);
+    }
+
+    public function unpublish($id)
+    {
+        BlogPost::where('id',$id)->update(['publish' => 0]);
+
+        return response()->json([
+            'message' => 'Blog Post UnPublish Successfully',
+            'status_code' => 200
+        ],200);
+    }
+
+    public function feature($id){
+        BlogPost::where('id',$id)->update(['feature' => 1]);
+
+        return response()->json([
+            'message' => 'Blog Post Feature Successfully',
+            'status_code' => 200
+        ],200);
+    }
+
+    public function unfeature($id)
+    {
+        BlogPost::where('id',$id)->update(['feature' => 0]);
+
+        return response()->json([
+            'message' => 'Blog Post UnFeature Successfully',
+            'status_code' => 200
+        ],200);
+    }
 }

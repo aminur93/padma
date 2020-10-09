@@ -9,9 +9,28 @@ class CategoryController extends Controller
 {
     public function getCategory(Request $request)
     {
-        $categories = category::all();
+        //$categories = category::orderBy('id','DESC')->paginate(10);
 
-        return response()->json(['category' => $categories],200);
+        $columns = ['id', 'name'];
+
+        $length = $request->input('length');
+        $column = $request->input('column'); //Index
+        $dir = $request->input('dir');
+        $searchValue = $request->input('search');
+
+        $query = category::select('id', 'name')->orderBy($columns[$column], $dir);
+
+        if ($searchValue) {
+            $query->where(function($query) use ($searchValue) {
+                $query->where('name', 'like', '%' . $searchValue . '%');
+            });
+        }
+
+        $projects = $query->paginate($length);
+
+        return ['data' => $projects, 'draw' => $request->input('draw')];
+
+        //return response()->json(['category' => $categories],200);
 
     }
 

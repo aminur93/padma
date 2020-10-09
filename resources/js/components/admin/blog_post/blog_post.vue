@@ -59,7 +59,7 @@
                                 <td>{{ blog.tag_name }}</td>
                                 <td>{{ blog.uname }}</td>
                                 <td>
-                                    <template v-if="blog.status == 1">
+                                    <template v-if="blog.blog_status == 1">
                                         <span class="badge badge-success">Approved</span>
                                     </template>
                                     <template v-else>
@@ -83,8 +83,15 @@
                                     </template>
                                 </td>
                                 <td>
-                                    <router-link :to="`/edit_post/${blog.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>
-                                    <button v-on:click="deleteBlog(blog)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    <router-link :to="`/edit_post/${blog.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+
+                                    <button v-if="blog.blog_status == 0" v-on:click="approve(blog)" class="btn btn-secondary btn-sm"><i class="fa fa-check"></i></button>
+                                    <button v-if="blog.blog_status == 1" v-on:click="Unapprove(blog)" class="btn btn-secondary btn-sm"><i class="fa fa-times"></i></button>
+                                    <button v-if="blog.publish == 0" v-on:click="publish(blog)" class="btn btn-warning btn-sm"><i class="fa fa-newspaper"></i></button>
+                                    <button v-if="blog.publish == 1" v-on:click="Unpublish(blog)" class="btn btn-warning btn-sm"><i class="fa fa-times"></i></button>
+                                    <button v-if="blog.feature == 0" v-on:click="feature(blog)" class="btn btn-light btn-sm"><i class="fa fa-star"></i></button>
+                                    <button v-if="blog.feature == 1" v-on:click="Unfeature(blog)" class="btn btn-light btn-sm"><i class="fa fa-times"></i></button>
+                                    <button v-on:click="deleteBlog(blog)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -149,6 +156,108 @@
                     console.log(error);
                 }
             },
+
+            approve: async function(blog){
+                try {
+                    const response = await blogServices.approve(blog.id);
+                    this.$swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    this.loadAllBlogPost();
+                }catch(error){
+                    console.log(error);
+                }
+            },
+
+            Unapprove: async function(blog){
+                try{
+                    const response = await blogServices.unApprove(blog.id);
+                    this.$swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    this.loadAllBlogPost();
+                }catch(error){
+                   console.log(error);
+                }
+            },
+
+            publish: async function(blog){
+                try {
+                    const response = await blogServices.publish(blog.id);
+                    this.$swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    this.loadAllBlogPost();
+                }catch (error){
+                    console.log(error);
+                }
+            },
+
+            Unpublish: async function(blog){
+                try{
+                    const response = await blogServices.unPublish(blog.id);
+                    this.$swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    this.loadAllBlogPost();
+                }catch (error){
+                    console.log(error);
+                }
+            },
+
+            feature: async function(blog){
+                try {
+                    const response = await blogServices.feature(blog.id);
+                    this.$swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    this.loadAllBlogPost();
+                }catch(error){
+                    console.log(error);
+                }
+            },
+
+            Unfeature: async function(blog){
+                try {
+                    const response = await blogServices.unFeature(blog.id);
+                    this.$swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    this.loadAllBlogPost();
+                }catch(error){
+                    console.log(error);
+                }
+            }
         }
     }
 </script>

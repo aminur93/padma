@@ -39,3 +39,27 @@ export function updateBlog(id, data) {
 export function deleteBlogPost(id) {
     return http().delete(`/blog/destroy/${id}`);
 }
+
+export function approve(id) {
+    return http().post(`/blog/approve/${id}`);
+}
+
+export function unApprove(id) {
+    return http().post(`/blog/unapprove/${id}`);
+}
+
+export function publish(id) {
+    return http().post(`/blog/publish/${id}`);
+}
+
+export function unPublish(id) {
+    return http().post(`/blog/unpublish/${id}`);
+}
+
+export function feature(id) {
+    return http().post(`/blog/feature/${id}`);
+}
+
+export function unFeature(id) {
+    return http().post(`/blog/unfeature/${id}`);
+}

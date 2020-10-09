@@ -7893,7 +7893,7 @@ var exports$3 = core_element.extend({
 				});
 			}
 
-			// If the user provided a sorting function, use it to modify the tooltip items
+			// If the frontend provided a sorting function, use it to modify the tooltip items
 			if (opts.itemSort) {
 				tooltipItems = tooltipItems.sort(function(a, b) {
 					return opts.itemSort(a, b, data);
@@ -13150,7 +13150,7 @@ var scale_time = core_scale.extend({
 			max = timestamps[timestamps.length - 1];
 		}
 
-		// Enforce limits with user min/max options
+		// Enforce limits with frontend min/max options
 		min = parse(me, timeOpts.min) || min;
 		max = parse(me, timeOpts.max) || max;
 

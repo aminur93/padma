@@ -45,13 +45,24 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/tag/update/{id}','TagController@update');
     Route::delete('/tag/destroy/{id}','TagController@destroy');
 
+    //Blog Routes
+    Route::get('/blog/getAllBlog','BlogPostController@getBlog');
+    Route::get('/blog/get_category','BlogPostController@getCategory');
+    Route::get('/blog/get_sub_category','BlogPostController@getAllSubCategory');
+    Route::get('/blog/get_subCategory/{category_id}','BlogPostController@getSubCategory');
+    Route::get('/blog/get_tag','BlogPostController@getTag');
+    Route::post('/blog/store','BlogPostController@store');
+    Route::get('/blog/edit/{id}','BlogPostController@edit');
+    Route::post('/blog/update/{id}','BlogPostController@update');
+    Route::delete('/blog/destroy/{id}','BlogPostController@destroy');
+
     //User Routes
-    Route::get('/user/get_role','UserController@getRole');
-    Route::get('/user/get_user','UserController@getUser');
-    Route::post('/user/store','UserController@store');
-    Route::get('/user/edit/{id}','UserController@edit');
-    Route::post('/user/update/{id}','UserController@update');
-    Route::delete('/user/destroy/{id}','UserController@destroy');
+    Route::get('/frontend/get_role','UserController@getRole');
+    Route::get('/frontend/get_user','UserController@getUser');
+    Route::post('/frontend/store','UserController@store');
+    Route::get('/frontend/edit/{id}','UserController@edit');
+    Route::post('/frontend/update/{id}','UserController@update');
+    Route::delete('/frontend/destroy/{id}','UserController@destroy');
 
     //Roles Routes
     Route::post('/roles/store','RolesController@store');

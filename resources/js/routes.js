@@ -115,7 +115,7 @@ export const routes = [
         component: AddBlogPost
     },
     {
-        path: '/edit_post',
+        path: '/edit_post/:id',
         name: 'edit_post',
         component: EditBlogPost
     },
@@ -178,7 +178,7 @@ export const routes = [
     * */
 
     {
-        path: '/user',
+        path: '/frontend',
         name: 'user',
         component: User
     },

@@ -68,7 +68,7 @@
 
         <!-- Sidebar -->
         <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
+            <!-- Sidefrontenduser panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
                     <img src="{{ asset('assets/admin/default_image/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
@@ -119,15 +119,14 @@
                         </router-link>
                     </li>
 
-                    @hasrole('admin')
                     <li class="nav-item has-treeview">
-                        <router-link to="#" class="nav-link" exact>
+                        <a href="#" class="nav-link" exact>
                             <i class="nav-icon fas fa-users-cog"></i>
                             <p>
                                 User Management
                                 <i class="fas fa-angle-left right"></i>
                             </p>
-                        </router-link>
+                        </a>
 
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
@@ -152,7 +151,7 @@
                             </li>
                         </ul>
                     </li>
-                    @endhasrole
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

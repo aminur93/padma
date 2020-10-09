@@ -52,6 +52,7 @@
                             </tr>
                         </tbody>
                     </table>
+
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -68,10 +69,15 @@
 
 <script>
     import * as categoryServices from '../../../services/category_services';
+    import DataTable from '../../datatable/DataTable.vue';
+    import Pagination from '../../datatable/pagination.vue';
+
     export default{
         name: 'category',
+        components: { datatable: DataTable, pagination: Pagination },
         data(){
-            return{
+
+            return {
                 categories: [],
             }
         },
@@ -82,10 +88,12 @@
         },
 
         methods: {
+
             loadCategory: async function(){
                 try{
                     const response = await categoryServices.loadcategory();
                     this.categories = response.data.category;
+
                 }catch (error){
                     console.log(error);
                 }

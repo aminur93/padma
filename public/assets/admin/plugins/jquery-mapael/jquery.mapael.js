@@ -276,10 +276,10 @@
          *   - Set the container back to the way it was before mapael instanciation
          *   - Remove all data associated to it (memory can then be free'ed by browser)
          *
-         * This method can be call directly by user:
+         * This method can be call directly by frontend:
          *     $(".mapcontainer").data("mapael").destroy();
          *
-         * This method is also automatically called if the user try to call mapael
+         * This method is also automatically called if the frontend try to call mapael
          * on a container already containing a mapael instance
          */
         destroy: function () {
@@ -365,8 +365,8 @@
         },
 
         /*
-         * Extend the user option with the default one
-         * @param options the user options
+         * Extend the frontend option with the default one
+         * @param options the frontend options
          * @return new options object
          */
         extendDefaultOptions: function (options) {
@@ -945,8 +945,8 @@
         },
 
         /*
-         * Show some element in range defined by user
-         * Triggered by user $(".mapcontainer").trigger("showElementsInRange", [opt]);
+         * Show some element in range defined by frontend
+         * Triggered by frontend $(".mapcontainer").trigger("showElementsInRange", [opt]);
          *
          * @param opt the options
          *  opt.hiddenOpacity opacity for hidden element (default = 0.3)
@@ -1023,7 +1023,7 @@
             // Loop through each valueIndex
             $.each(ranges, function (valueIndex) {
                 var range = ranges[valueIndex];
-                // Check if user defined at least a min or max value
+                // Check if frontend defined at least a min or max value
                 if (range.min === undefined && range.max === undefined) {
                     return true; // skip this iteration (each loop), goto next range
                 }
@@ -1881,7 +1881,7 @@
 
                     // Hide map elements when the user clicks on a legend item
                     if (legendOptions.hideElemsOnClick.enabled) {
-                        // Hide/show elements when user clicks on a legend element
+                        // Hide/show elements when frontend clicks on a legend element
                         legendLabel.attr({cursor: "pointer"});
                         legendElem.attr({cursor: "pointer"});
 
@@ -2385,7 +2385,7 @@
                     } else if (zoomDir === 'out' && (w < self.currentViewBox.w || w > targetW)) {
                         // Zooming OUT and the new ViewBox seems smaller than the current value, or larger than target value
                         // We do NOT set the ViewBox with this value
-                        // Otherwise, the user would see the camera going back and forth
+                        // Otherwise, the frontend would see the camera going back and forth
                     } else {
                         // New values look good, applying
                         self.setViewBox(x, y, w, h);

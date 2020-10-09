@@ -36,16 +36,56 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Category Name</th>
+                            <th>Image</th>
+                            <th>Category</th>
+                            <th>Sub Category</th>
+                            <th>Tag</th>
+                            <th>Author</th>
+                            <th>Status</th>
+                            <th>Publish</th>
+                            <th>Feature</th>
                             <th>Action</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr v-for="(blog,index) in blogPosts" :key="index">
+                                <td>{{ index + 1 }}</td>
+                                <td>
+                                    <img :src="showImage(blog.image)" alt="" style="width: 50px;">
+                                </td>
+                                <td>{{ blog.cname }}</td>
+                                <td>{{ blog.sub_cat_name }}</td>
+                                <td>{{ blog.tag_name }}</td>
+                                <td>{{ blog.uname }}</td>
+                                <td>
+                                    <template v-if="blog.status == 1">
+                                        <span class="badge badge-success">Approved</span>
+                                    </template>
+                                    <template v-else>
+                                        <span class="badge badge-danger">Not Approved</span>
+                                    </template>
+                                </td>
+                                <td>
+                                    <template v-if="blog.publish == 1">
+                                        <span class="badge badge-success">Published</span>
+                                    </template>
+                                    <template v-else>
+                                        <span class="badge badge-danger">Not Published</span>
+                                    </template>
+                                </td>
+                                <td>
+                                    <template v-if="blog.feature == 1">
+                                        <span class="badge badge-success">Feature</span>
+                                    </template>
+                                    <template v-else>
+                                        <span class="badge badge-danger">Not Feature</span>
+                                    </template>
+                                </td>
+                                <td>
+                                    <router-link :to="`/edit_post/${blog.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>
+                                    <button v-on:click="deleteBlog(blog)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -64,8 +104,52 @@
 </template>
 
 <script>
+
+    import * as blogServices from '../../../services/blog_services';
+
     export default{
         name: 'blog_post',
+        data(){
+            return{
+                blogPosts: [],
+            }
+        },
+
+        mounted(){
+            this.loadAllBlogPost();
+        },
+
+        methods: {
+            loadAllBlogPost: async function(){
+                try {
+                    const response = await blogServices.getBlogPost();
+                    this.blogPosts = response.data.blog_post;
+                }catch (error){
+                    console.log(error);
+                }
+            },
+
+            showImage(img){
+                return "/assets/admin/uploads/original_image/"+img;
+            },
+
+            deleteBlog: async function(blog){
+                try{
+                    const response = await blogServices.deleteBlogPost(blog.id);
+                    this.$swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    this.loadAllBlogPost();
+                }catch (error){
+                    console.log(error);
+                }
+            },
+        }
     }
 </script>
 

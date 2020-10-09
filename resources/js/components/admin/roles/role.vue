@@ -46,7 +46,7 @@
                             <tr v-for="(role,index) in roles" :key="index">
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ role.rname }}</td>
-                                <td>{{ role.pname }}</td>
+                                <td><span class="badge badge-success">{{ role.pname }}</span></td>
                                 <td>
                                     <router-link :to="`/edit_role/${role.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>
                                     <button class="btn btn-danger" v-on:click="deleteRole(role)"><i class="fa fa-trash"></i></button>

@@ -1157,7 +1157,7 @@ Docs & License: https://fullcalendar.io/
         };
         /* Scroll
         ------------------------------------------------------------------------------------------------------------------*/
-        // Computes the initial pre-configured scroll state prior to allowing the user to change it
+        // Computes the initial pre-configured scroll state prior to allowing the frontend to change it
         TimeGridView.prototype.computeDateScroll = function (timeMs) {
             var top = this.timeGrid.computeTimeTop(timeMs);
             // zoom can give weird floating-point values. rather scroll a little bit further

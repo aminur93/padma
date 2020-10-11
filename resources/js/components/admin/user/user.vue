@@ -87,6 +87,7 @@
             loadUsers: async function(){
                 try{
                     const response = await userServices.getUser();
+                    console.log(response);
                     this.users = response.data.users;
 
                 }catch (error){

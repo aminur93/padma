@@ -2277,7 +2277,7 @@ Docs & License: https://fullcalendar.io/
             configurable: true
         });
         Object.defineProperty(EventApi.prototype, "classNames", {
-            // NOTE: frontend can't modify these because Object.freeze was called in event-def parsing
+            // NOTE: user can't modify these because Object.freeze was called in event-def parsing
             get: function () { return this._def.ui.classNames; },
             enumerable: true,
             configurable: true
@@ -3029,7 +3029,7 @@ Docs & License: https://fullcalendar.io/
             leftovers = newLeftovers;
         }
         def.extendedProps = __assign(leftovers, def.extendedProps || {});
-        // help out EventApi from having frontend modify props
+        // help out EventApi from having user modify props
         Object.freeze(def.ui.classNames);
         Object.freeze(def.extendedProps);
         return def;
@@ -3951,7 +3951,7 @@ Docs & License: https://fullcalendar.io/
               this.eventRenderer.hideByHash(state.affectedInstances)
             }
       
-            // if the frontend is dragging something that is considered an event with real event data,
+            // if the user is dragging something that is considered an event with real event data,
             // and this component likes to do drag mirrors OR the component where the seg came from
             // likes to do drag mirrors, then render a drag mirror.
             if (isEvent && (this.doesDragMirror || sourceSeg && sourceSeg.component.doesDragMirror)) {
@@ -6393,7 +6393,7 @@ Docs & License: https://fullcalendar.io/
     var interactionSettingsStore = {};
 
     /*
-    Detects when the frontend clicks on an event within a DateComponent
+    Detects when the user clicks on an event within a DateComponent
     */
     var EventClicking = /** @class */ (function (_super) {
         __extends(EventClicking, _super);
@@ -6429,7 +6429,7 @@ Docs & License: https://fullcalendar.io/
     }(Interaction));
 
     /*
-    Triggers events and adds/removes core classNames when the frontend's pointer
+    Triggers events and adds/removes core classNames when the user's pointer
     enters/leaves event-elements of a component.
     */
     var EventHovering = /** @class */ (function (_super) {

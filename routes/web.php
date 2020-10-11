@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UserHomeController@index')->name('blog');
 
 Auth::routes();
 
@@ -63,12 +61,12 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/blog/unfeature/{id}','BlogPostController@unfeature');
 
     //User Routes
-    Route::get('/frontend/get_role','UserController@getRole');
-    Route::get('/frontend/get_user','UserController@getUser');
-    Route::post('/frontend/store','UserController@store');
-    Route::get('/frontend/edit/{id}','UserController@edit');
-    Route::post('/frontend/update/{id}','UserController@update');
-    Route::delete('/frontend/destroy/{id}','UserController@destroy');
+    Route::get('/user/get_role','UserController@getRole');
+    Route::get('/user/get_user','UserController@getUser');
+    Route::post('/user/store','UserController@store');
+    Route::get('/user/edit/{id}','UserController@edit');
+    Route::post('/user/update/{id}','UserController@update');
+    Route::delete('/user/destroy/{id}','UserController@destroy');
 
     //Roles Routes
     Route::post('/roles/store','RolesController@store');
@@ -86,5 +84,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::delete('/permission/destroy/{id}','PermissionsController@destroy');
 
 });
+
+Route::get('/{any}', 'UserHomeController@index')->name('blog')->where('any','.*');
 
 Route::get('/{any}', 'HomeController@index')->name('home')->where('any','.*');

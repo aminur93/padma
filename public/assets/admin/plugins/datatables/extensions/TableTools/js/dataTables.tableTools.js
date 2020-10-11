@@ -1094,8 +1094,8 @@ TableTools.prototype = {
 
 
 	/**
-	 * Show a message to the end frontend which is nicely styled
-	 *  @param {string} message The HTML string to show to the frontend
+	 * Show a message to the end user which is nicely styled
+	 *  @param {string} message The HTML string to show to the user
 	 *  @param {int} time The duration the message is to be shown on screen for (mS)
 	 */
 	"fnInfo": function ( message, time ) {
@@ -1175,7 +1175,7 @@ TableTools.prototype = {
 
 
 	/**
-	 * Take the frontend defined settings and the default settings and combine them.
+	 * Take the user defined settings and the default settings and combine them.
 	 *  @method  _fnCustomiseSettings
 	 *  @param   {Object} oOpts Same as TableTools constructor
 	 *  @returns void
@@ -1223,10 +1223,10 @@ TableTools.prototype = {
 
 
 	/**
-	 * Take the frontend input arrays and expand them to be fully defined, and then add them to a given
+	 * Take the user input arrays and expand them to be fully defined, and then add them to a given
 	 * DOM element
 	 *  @method  _fnButtonDefinations
-	 *  @param {array} buttonSet Set of frontend defined buttons
+	 *  @param {array} buttonSet Set of user defined buttons
 	 *  @param {node} wrapper Node to add the created buttons to
 	 *  @returns void
 	 *  @private 
@@ -1566,7 +1566,7 @@ TableTools.prototype = {
 				} );
 
 				$(dt.nTBody).on( 'mouseup.DTTT_Select', 'tr', function(e) {
-					$(dt.nTBody).css( '-moz-frontend-select', '' );
+					$(dt.nTBody).css( '-moz-user-select', '' );
 				} );
 			}
 

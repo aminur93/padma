@@ -1738,7 +1738,7 @@ var undoIEfix = function undoIEfix() {
 };
 
 // Adding aria-hidden="true" to elements outside of the active modal dialog ensures that
-// elements not within the active modal dialog will not be surfaced if a frontend opens a screen
+// elements not within the active modal dialog will not be surfaced if a user opens a screen
 // reader’s list of elements (headings, form controls, landmarks, etc.) in the document.
 
 var setAriaHidden = function setAriaHidden() {
@@ -2477,7 +2477,7 @@ function _main(userParams) {
       };
     } else {
       var ignoreOutsideClick = false; // Ignore click events that had mousedown on the popup but mouseup on the container
-      // This can happen when the frontend drags a slider
+      // This can happen when the user drags a slider
 
       domCache.popup.onmousedown = function () {
         domCache.container.onmouseup = function (e) {

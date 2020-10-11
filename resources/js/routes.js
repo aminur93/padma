@@ -3,6 +3,7 @@
  */
 
 import AdminHome from './components/admin/AdminHome.vue';
+import UserHome from './components/frontend/UserHome.vue';
 
 //tag Routes
 import Tag from './components/admin/tags/tag.vue';
@@ -40,6 +41,7 @@ import AddUser from './components/admin/user/add_user.vue';
 import EditUser from './components/admin/user/edit_user.vue';
 
 export const routes = [
+
     {
         path: '/home',
         component: AdminHome
@@ -64,7 +66,6 @@ export const routes = [
     /*tag routes end*/
 
     /*Categories Route Start*/
-
     {
         path: '/category',
         name: 'category',
@@ -178,7 +179,7 @@ export const routes = [
     * */
 
     {
-        path: '/frontend',
+        path: '/user',
         name: 'user',
         component: User
     },
@@ -193,11 +194,17 @@ export const routes = [
         path: '/edit_user/:id',
         name: 'edit_user',
         component: EditUser
-    }
+    },
 
     /*
     * End user route
     * */
+
+    {
+        path: '/',
+        name: 'user-home',
+        component: UserHome
+    },
 ];
 
 

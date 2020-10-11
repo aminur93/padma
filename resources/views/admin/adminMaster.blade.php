@@ -61,7 +61,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="" class="brand-link">
-            <img src="{{ asset('assets/admin/default_image/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <img src="{{ asset('assets/admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">Padma Technology</span>
         </a>
@@ -71,7 +71,7 @@
             <!-- Sidefrontenduser panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="{{ asset('assets/admin/default_image/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
+                    <img src="{{ asset('assets/admin/dist/img/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">{{ auth()->user()->name }}</a>
@@ -184,6 +184,6 @@
 <!-- ./wrapper -->
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -85,7 +85,7 @@
                         </tr>
 
                         <tr v-show="!categories.length">
-                            <td colspan="2">
+                            <td colspan="3">
                                 <div class="alert alert-danger" role="alert">
                                     Sorry: (No Data Found)
                                 </div>

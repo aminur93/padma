@@ -2811,8 +2811,8 @@ var exports$2 = core_element.extend({
 	easing: '', // the easing to use for this animation
 	render: null, // render function used by the animation service
 
-	onAnimationProgress: null, // frontend specified callback to fire on each step of the animation
-	onAnimationComplete: null, // frontend specified callback to fire when the animation finishes
+	onAnimationProgress: null, // user specified callback to fire on each step of the animation
+	onAnimationComplete: null, // user specified callback to fire when the animation finishes
 });
 
 var core_animation = exports$2;
@@ -3182,7 +3182,7 @@ helpers$1.extend(DatasetController.prototype, {
 		// the internal meta data accordingly.
 		if (me._data !== data) {
 			if (me._data) {
-				// This case happens when the frontend replaced the data array instance.
+				// This case happens when the user replaced the data array instance.
 				unlistenArrayEvents(me._data, me);
 			}
 
@@ -3192,7 +3192,7 @@ helpers$1.extend(DatasetController.prototype, {
 			me._data = data;
 		}
 
-		// Re-sync meta data in case the frontend replaced the data array or if we missed
+		// Re-sync meta data in case the user replaced the data array or if we missed
 		// any updates and so make sure that we handle number of datapoints changing.
 		me.resyncElements();
 	},
@@ -6637,7 +6637,7 @@ function initCanvas(canvas, config) {
 	if (renderHeight === null || renderHeight === '') {
 		if (canvas.style.height === '') {
 			// If no explicit render height and style height, let's apply the aspect ratio,
-			// which one can be specified by the frontend but also by charts as default option
+			// which one can be specified by the user but also by charts as default option
 			// (i.e. options.aspectRatio). If not specified, use canvas aspect ratio of 2.
 			canvas.height = canvas.width / (config.options.aspectRatio || 2);
 		} else {
@@ -7225,7 +7225,7 @@ var core_plugins = {
 
 	/**
 	 * Invalidates cache for the given chart: descriptors hold a reference on plugin option,
-	 * but in some cases, this reference can be changed by the frontend when updating options.
+	 * but in some cases, this reference can be changed by the user when updating options.
 	 * https://github.com/chartjs/Chart.js/issues/5111#issuecomment-355934167
 	 * @private
 	 */
@@ -7878,14 +7878,14 @@ var exports$3 = core_element.extend({
 				tooltipItems.push(createTooltipItem(active[i]));
 			}
 
-			// If the frontend provided a filter function, use it to modify the tooltip items
+			// If the user provided a filter function, use it to modify the tooltip items
 			if (opts.filter) {
 				tooltipItems = tooltipItems.filter(function(a) {
 					return opts.filter(a, data);
 				});
 			}
 
-			// If the frontend provided a sorting function, use it to modify the tooltip items
+			// If the user provided a sorting function, use it to modify the tooltip items
 			if (opts.itemSort) {
 				tooltipItems = tooltipItems.sort(function(a, b) {
 					return opts.itemSort(a, b, data);
@@ -11147,13 +11147,13 @@ var scale_category = core_scale.extend({
 		var findIndex;
 
 		if (me.options.ticks.min !== undefined) {
-			// frontend specified min value
+			// user specified min value
 			findIndex = labels.indexOf(me.options.ticks.min);
 			me.minIndex = findIndex !== -1 ? findIndex : me.minIndex;
 		}
 
 		if (me.options.ticks.max !== undefined) {
-			// frontend specified max value
+			// user specified max value
 			findIndex = labels.indexOf(me.options.ticks.max);
 			me.maxIndex = findIndex !== -1 ? findIndex : me.maxIndex;
 		}
@@ -11299,7 +11299,7 @@ function generateTicks(generationOptions, dataRange) {
 		// If a precision is not specified, calculate factor based on spacing
 		factor = Math.pow(10, helpers$1._decimalPlaces(spacing));
 	} else {
-		// If the frontend specified a precision, round to that number of decimal places
+		// If the user specified a precision, round to that number of decimal places
 		factor = Math.pow(10, precision);
 		spacing = Math.ceil(spacing * factor) / factor;
 	}
@@ -11351,7 +11351,7 @@ var scale_linearbase = core_scale.extend({
 		var tickOpts = opts.ticks;
 
 		// If we are forcing it to begin at 0, but 0 will already be rendered on the chart,
-		// do nothing since that would make the chart weird. If the frontend really wants a weird chart
+		// do nothing since that would make the chart weird. If the user really wants a weird chart
 		// axis, they can manually override it
 		if (tickOpts.beginAtZero) {
 			var minSign = helpers$1.sign(me.min);
@@ -12741,7 +12741,7 @@ function toTimestamp(scale, input) {
 	}
 
 	// Labels are in an incompatible format and no `parser` has been provided.
-	// The frontend might still use the deprecated `format` option for parsing.
+	// The user might still use the deprecated `format` option for parsing.
 	if (!parser && typeof format === 'function') {
 		value = format(input);
 
@@ -12989,7 +12989,7 @@ var defaultConfig$4 = {
 		 * Ticks generation input values:
 		 * - 'auto': generates "optimal" ticks based on scale size and time options.
 		 * - 'data': generates ticks from data (including labels from data {t|x|y} objects).
-		 * - 'labels': generates ticks from frontend given `data.labels` values ONLY.
+		 * - 'labels': generates ticks from user given `data.labels` values ONLY.
 		 * @see https://github.com/chartjs/Chart.js/pull/4507
 		 * @since 2.7.0
 		 */
@@ -13142,7 +13142,7 @@ var scale_time = core_scale.extend({
 			max = timestamps[timestamps.length - 1];
 		}
 
-		// Enforce limits with frontend min/max options
+		// Enforce limits with user min/max options
 		min = parse(me, timeOpts.min) || min;
 		max = parse(me, timeOpts.max) || max;
 

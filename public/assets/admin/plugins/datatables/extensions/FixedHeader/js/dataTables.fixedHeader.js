@@ -165,7 +165,7 @@ FixedHeader.prototype = {
 		var s = this.fnGetSettings();
 		var that = this;
 
-		/* Record the frontend definable settings */
+		/* Record the user definable settings */
 		this.fnInitSettings( s, oInit );
 
 		if ( oDtSettings.oScroll.sX !== "" || oDtSettings.oScroll.sY !== "" )
@@ -242,10 +242,10 @@ FixedHeader.prototype = {
 
 	/*
 	 * Function: fnInitSettings
-	 * Purpose:  Take the frontend's settings and copy them to our local store
+	 * Purpose:  Take the user's settings and copy them to our local store
 	 * Returns:  -
 	 * Inputs:   object:s - the local settings object
-	 *           object:oInit - the frontend's settings object
+	 *           object:oInit - the user's settings object
 	 */
 	fnInitSettings: function ( s, oInit )
 	{

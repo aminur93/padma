@@ -46,8 +46,8 @@
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ permission.name }}</td>
                                 <td>
-                                    <router-link :to="`/edit_permission/${permission.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>
-                                    <button class="btn btn-danger" v-on:click="deletePermission(permission)"><i class="fa fa-trash"></i></button>
+                                    <router-link :to="`/edit_permission/${permission.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                    <button class="btn btn-danger btn-sm" v-on:click="deletePermission(permission)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>

@@ -120,7 +120,7 @@
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link" exact>
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users-cog"></i>
                             <p>
                                 User Management
@@ -173,7 +173,7 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
+    <footer class="main-footer" style="min-height: 0">
         <strong>Copyright &copy; 2014-2020 <a href="">AminurDev.io</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
@@ -184,6 +184,6 @@
 <!-- ./wrapper -->
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

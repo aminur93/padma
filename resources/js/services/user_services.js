@@ -8,6 +8,10 @@ export function getUser() {
     return http().get('/user/get_user');
 }
 
+export function getUserCount() {
+    return http().get('/user/get_user_count');
+}
+
 export function getRole() {
     return http().get('/user/get_role');
 }

@@ -48,8 +48,8 @@
                                 <td>{{ subCat.name }}</td>
                                 <td>{{ subCat.sub_cat_name}}</td>
                                 <td>
-                                    <router-link :to="`/edit_sub_vat/${subCat.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>
-                                    <button v-on:click="deleteSubCate(subCat)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    <router-link :to="`/edit_sub_vat/${subCat.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                    <button v-on:click="deleteSubCate(subCat)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>

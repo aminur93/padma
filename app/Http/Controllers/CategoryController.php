@@ -34,6 +34,23 @@ class CategoryController extends Controller
 
     }
 
+    public function getTotalCategory(){
+        $category = category::get()->count();
+
+        return response()->json([
+            'category_count' => $category,
+            'status_code' => 200
+        ],200);
+    }
+
+    public function getCategoryDash(){
+        $category = category::orderBy('id','DESC')->get()->take(5);
+        return response()->json([
+            'category_dash' => $category,
+            'status_code' => 200
+        ],200);
+    }
+
     public function store(Request $request)
     {
         $request->validate([

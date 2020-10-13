@@ -32,26 +32,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <!--<table class="table table-bordered">-->
-                        <!--<thead>-->
-                            <!--<tr>-->
-                                <!--<th>#</th>-->
-                                <!--<th>Category Name</th>-->
-                                <!--<th>Action</th>-->
-                            <!--</tr>-->
-                        <!--</thead>-->
-
-                        <!--<tbody>-->
-                            <!--<tr v-for="(category,index) in categories" :key="index">-->
-                                <!--<th>{{ index + 1}}</th>-->
-                                <!--<th>{{ category.name }}</th>-->
-                                <!--<th>-->
-                                    <!--<router-link :to="`/edit_category/${category.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>-->
-                                    <!--<button v-on:click="deleteCategory(category)" class="btn btn-danger"><i class="fa fa-trash"></i></button>-->
-                                <!--</th>-->
-                            <!--</tr>-->
-                        <!--</tbody>-->
-                    <!--</table>-->
 
                     <div class="mb-3">
 
@@ -79,8 +59,8 @@
                             <td>{{index + 1}}</td>
                             <td>{{category.name }}</td>
                             <td>
-                                <router-link :to="`/edit_category/${category.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>
-                                <button v-on:click="deleteCategory(category)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <router-link :to="`/edit_category/${category.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                <button v-on:click="deleteCategory(category)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
 

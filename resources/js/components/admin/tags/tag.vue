@@ -46,8 +46,8 @@
                             <td>{{ index + 1}}</td>
                             <td>{{ tag.tag_name }}</td>
                             <td>
-                                <router-link :to="`/edit_tag/${tag.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>
-                                <button v-on:click="deleteTags(tag)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <router-link :to="`/edit_tag/${tag.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                <button v-on:click="deleteTags(tag)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                         </tbody>

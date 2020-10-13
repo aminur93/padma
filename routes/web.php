@@ -23,6 +23,8 @@ Route::group(['middleware' => ['auth']], function (){
 
     //category Routes
     Route::get('/category/getData','CategoryController@getCategory');
+    Route::get('/category/getTotalCategory','CategoryController@getTotalCategory');
+    Route::get('/category/getCategoryDash','CategoryController@getCategoryDash');
     Route::post('/category/store','CategoryController@store');
     Route::get('/category/edit/{id}','CategoryController@edit');
     Route::post('/category/update/{id}','CategoryController@update');
@@ -38,6 +40,8 @@ Route::group(['middleware' => ['auth']], function (){
 
     //Tag Routes
     Route::get('/tag/getData','TagController@getData');
+    Route::get('/tag/getTotalTag','TagController@getTotalTag');
+    Route::get('/tag/getTagDash','TagController@getTagDash');
     Route::post('/tag/store','TagController@store');
     Route::get('/tag/edit/{id}','TagController@edit');
     Route::post('/tag/update/{id}','TagController@update');
@@ -45,6 +49,8 @@ Route::group(['middleware' => ['auth']], function (){
 
     //Blog Routes
     Route::get('/blog/getAllBlog','BlogPostController@getBlog');
+    Route::get('/blog/getBlogCount','BlogPostController@getBlogCount');
+    Route::get('/blog/getBlogDash','BlogPostController@getBlogDash');
     Route::get('/blog/get_category','BlogPostController@getCategory');
     Route::get('/blog/get_sub_category','BlogPostController@getAllSubCategory');
     Route::get('/blog/get_subCategory/{category_id}','BlogPostController@getSubCategory');
@@ -63,6 +69,7 @@ Route::group(['middleware' => ['auth']], function (){
     //User Routes
     Route::get('/user/get_role','UserController@getRole');
     Route::get('/user/get_user','UserController@getUser');
+    Route::get('/user/get_user_count','UserController@getUserCount');
     Route::post('/user/store','UserController@store');
     Route::get('/user/edit/{id}','UserController@edit');
     Route::post('/user/update/{id}','UserController@update');

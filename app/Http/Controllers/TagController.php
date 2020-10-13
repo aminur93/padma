@@ -14,6 +14,23 @@ class TagController extends Controller
         return response()->json(['tag' => $tag],200);
     }
 
+    public function getTotalTag(){
+        $tags = Tag::get()->count();
+        return response()->json([
+            'tag_count' => $tags,
+            'status_code' => 200
+        ],200);
+    }
+
+    public function getTagDash(){
+        $tag = Tag::latest()->get()->take(5);
+
+        return response()->json([
+            'tag_dash' => $tag,
+            'status_code' => 200
+        ],200);
+    }
+
     public function store(Request $request)
     {
         $request->validate([

@@ -24,6 +24,14 @@ export function getBlogPost() {
     return http().get('/blog/getAllBlog');
 }
 
+export function getBlogCount() {
+    return http().get('/blog/getBlogCount');
+}
+
+export function getDashBlog() {
+    return http().get('/blog/getBlogDash');
+}
+
 export function storeBlog(data) {
     return httpFile().post('/blog/store', data);
 }

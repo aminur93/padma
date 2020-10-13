@@ -39,6 +39,23 @@ class BlogPostController extends Controller
         return response()->json(['blog_post' => $blog],200);
     }
 
+    public function getBlogCount(){
+        $blogs = BlogPost::get()->count();
+        return response()->json([
+            'blog_count' => $blogs,
+            'status_code' => 200
+        ],200);
+    }
+
+    public function getBlogDash(){
+        $blog = BlogPost::latest()->get()->take(5);
+
+        return response()->json([
+            'blog_dash' => $blog,
+            'status_code' => 200
+        ],200);
+    }
+
     public function getCategory(){
         $category = category::all();
         return response()->json(['category' => $category],200);

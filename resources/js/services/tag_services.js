@@ -12,6 +12,14 @@ export function getTagsData() {
     return http().get('/tag/getData');
 }
 
+export function getTagCount() {
+    return http().get('/tag/getTotalTag');
+}
+
+export function getTagDash() {
+    return http().get('/tag/getTagDash');
+}
+
 export function editTagData(id) {
     return http().get(`/tag/edit/${id}`);
 }

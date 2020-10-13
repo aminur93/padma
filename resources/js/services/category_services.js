@@ -12,6 +12,14 @@ export function loadcategory() {
     return http().get('/category/getData');
 }
 
+export function getCount() {
+    return http().get('/category/getTotalCategory');
+}
+
+export function catDash() {
+    return http().get('/category/getCategoryDash');
+}
+
 export function deleteCategories(id) {
     return http().delete(`/category/destroy/${id}`);
 }

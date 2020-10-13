@@ -25,6 +25,14 @@ class UserController extends Controller
         return response()->json(['users' => $user],200);
     }
 
+    public function getUserCount(){
+        $user = User::get()->count();
+        return response()->json([
+            'user_count' => $user,
+            'status_code' => 200
+        ],200);
+    }
+
     public function getRole(){
         $role = Role::get()->toArray();
 

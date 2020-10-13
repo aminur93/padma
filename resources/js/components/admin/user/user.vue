@@ -48,8 +48,8 @@
                                 <td>{{ user.uname }}</td>
                                 <td>{{ user.rname }}</td>
                                 <td>
-                                    <router-link :to="`/edit_user/${user.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>
-                                    <button class="btn btn-danger" v-on:click="deleteUser(user)"><i class="fa fa-trash"></i></button>
+                                    <router-link :to="`/edit_user/${user.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                    <button class="btn btn-danger btn-sm" v-on:click="deleteUser(user)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -87,7 +87,6 @@
             loadUsers: async function(){
                 try{
                     const response = await userServices.getUser();
-                    console.log(response);
                     this.users = response.data.users;
 
                 }catch (error){

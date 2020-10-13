@@ -48,8 +48,8 @@
                                 <td>{{ role.rname }}</td>
                                 <td><span class="badge badge-success">{{ role.pname }}</span></td>
                                 <td>
-                                    <router-link :to="`/edit_role/${role.id}`" class="btn btn-info"><i class="fa fa-edit"></i></router-link>
-                                    <button class="btn btn-danger" v-on:click="deleteRole(role)"><i class="fa fa-trash"></i></button>
+                                    <router-link :to="`/edit_role/${role.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                    <button class="btn btn-danger btn-sm" v-on:click="deleteRole(role)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -87,7 +87,6 @@
             loadRoles: async function(){
                 try {
                     const response = await roleServices.getRole();
-                    console.log(response);
                     this.roles = response.data.roles;
                 }catch (error){
                     console.log(error);

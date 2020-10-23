@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'UserHomeController@index')->name('blog');
+Route::get('/category/getCat','CategoryController@getCat');
+Route::get('/tag/getTag','UserHomeController@getTag');
+Route::get('/subcategory/getSubCategory','UserHomeController@getSubCategory');
+Route::get('/blog/popular','UserHomeController@popular');
+Route::get('/blog/recent','UserHomeController@recent');
+Route::get('/blog/allBloglist','UserHomeController@allBloglist');
+Route::get('/blog/searchList','UserHomeController@searchList');
 
 Auth::routes();
 

@@ -8,6 +8,10 @@ export function getAllCat() {
     return http().get('/sub_cat/getCatData');
 }
 
+export function getSubCat() {
+    return http().get('/subcategory/getSubCategory');
+}
+
 export function getData() {
     return http().get('/sub_cat/getData');
 }

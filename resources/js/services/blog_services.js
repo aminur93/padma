@@ -71,3 +71,19 @@ export function feature(id) {
 export function unFeature(id) {
     return http().post(`/blog/unfeature/${id}`);
 }
+
+export function getPopularPost() {
+    return http().get('/blog/popular');
+}
+
+export function getRecentPost() {
+    return http().get('/blog/recent');
+}
+
+export function getLatestBlog(data) {
+    return http().get('/blog/allBloglist?page='+data);
+}
+
+export function getSearch(data) {
+    return http().get('/blog/searchList?'+ data);
+}

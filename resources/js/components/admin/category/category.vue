@@ -144,22 +144,6 @@
 
         methods: {
 
-//            loadCategory: async function(){
-//                this.tableData.draw++;
-//                try{
-//                    const response = await categoryServices.loadcategory({params: this.tableData});
-//                    //this.categories = response.data.category;
-//
-//                    let data = response.data;
-//                    if (this.tableData.draw == data.draw) {
-//                        this.categories = data.data.data;
-//                        this.configPagination(data.data);
-//                    }
-//
-//                }catch (error){
-//                    console.log(error);
-//                }
-//            },
 
             getProjects(url = '/category/getData?page='+this.pagination.current_page) {
                 this.tableData.draw++;

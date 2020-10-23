@@ -34,6 +34,11 @@ class CategoryController extends Controller
 
     }
 
+    public function getCat(){
+        $categories = category::get();
+        return response()->json(['category' => $categories],200);
+    }
+
     public function getTotalCategory(){
         $category = category::get()->count();
 

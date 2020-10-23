@@ -12,6 +12,10 @@ export function loadcategory() {
     return http().get('/category/getData');
 }
 
+export function getCat() {
+    return http().get('/category/getCat');
+}
+
 export function getCount() {
     return http().get('/category/getTotalCategory');
 }

@@ -12,6 +12,10 @@ export function getTagsData() {
     return http().get('/tag/getData');
 }
 
+export function getTag() {
+    return http().get('/tag/getTag');
+}
+
 export function getTagCount() {
     return http().get('/tag/getTotalTag');
 }

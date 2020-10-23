@@ -15,6 +15,9 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 Vue.use(VueSweetalert2);
 
+//filter
+import {filters} from './filter';
+
 Vue.component('admin-main', () => import("./components/admin/AdminMaster.vue"));
 
 Vue.component('home-main', ()=> import("./components/frontend/HomeMaster.vue"));

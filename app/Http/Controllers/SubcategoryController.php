@@ -9,7 +9,15 @@ use DB;
 
 class SubcategoryController extends Controller
 {
-    public function getData(){
+    public function getData(Request $request){
+
+        $columns = ['id', 'category_name', 'sub_category_name'];
+
+        $length = $request->input('length');
+        $column = $request->input('column'); //Index
+        $dir = $request->input('dir');
+        $searchValue = $request->input('search');
+
         $sub_cat = DB::table('subcategories')
                     ->select(
                         'subcategories.id as id',
@@ -17,9 +25,18 @@ class SubcategoryController extends Controller
                         'categories.name as name'
                     )
                     ->Join('categories','subcategories.category_id','=','categories.id')
-                    ->get();
+                    ->orderBy($columns[$column], $dir);
 
-        return response()->json(['sub_cat' => $sub_cat],200);
+        if ($searchValue) {
+            $sub_cat->where(function($sub_cat) use ($searchValue) {
+                $sub_cat->where('sub_cat_name', 'like', '%' . $searchValue . '%');
+                $sub_cat->orwhere('name', 'like', '%' . $searchValue . '%');
+            });
+        }
+
+        $projects = $sub_cat->paginate($length);
+
+        return ['data' => $projects, 'draw' => $request->input('draw')];
     }
 
     public function getCatData()

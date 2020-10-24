@@ -8,8 +8,8 @@ export function createTag(data) {
     return http().post('/tag/store', data);
 }
 
-export function getTagsData() {
-    return http().get('/tag/getData');
+export function getTagsData(data) {
+    return http().get('/tag/getData?'+ data);
 }
 
 export function getTag() {

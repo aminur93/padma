@@ -122,4 +122,35 @@ class UserHomeController extends Controller
 
         return response()->json(['result' => $result, 'status_code' => 200],200);
     }
+
+    public function searchBlog(Request $request)
+    {
+        $searchBlog = $request->input('search');
+
+        $query = DB::table('blog_posts')
+                ->select(
+                    'blog_posts.id as id',
+                    'blog_posts.title as title',
+                    'blog_posts.description as description',
+                    'categories.name as cname',
+                    'tags.tag_name as tag_name',
+                    'users.name as uname'
+                )
+                ->Join('categories','blog_posts.category_id','=','categories.id')
+                ->Join('tags','blog_posts.tag_id','=','tags.id')
+                ->Join('users','blog_posts.author_id','=','users.id')
+                ->orderBy('id','desc');
+                //->paginate(5);
+
+        if ($searchBlog){
+            $query->where(function ($query) use ($searchBlog){
+                $query->where('title','like','%'. $searchBlog .'%');
+            });
+        }
+
+        $result = $query->paginate(5);
+
+        return response()->json(['result' => $result, 'status_code' => 200],200);
+
+    }
 }

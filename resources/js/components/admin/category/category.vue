@@ -26,7 +26,7 @@
                     <h3 class="card-title">Category Management</h3>
 
                     <div class="card-tools">
-                        <router-link to="/add" class="btn btn-primary">
+                        <router-link to="/add" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> Add New Category
                         </router-link>
                     </div>
@@ -143,7 +143,6 @@
         },
 
         methods: {
-
 
             getProjects(url = '/category/getData?page='+this.pagination.current_page) {
                 this.tableData.draw++;

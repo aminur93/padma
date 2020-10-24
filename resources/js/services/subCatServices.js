@@ -12,8 +12,8 @@ export function getSubCat() {
     return http().get('/subcategory/getSubCategory');
 }
 
-export function getData() {
-    return http().get('/sub_cat/getData');
+export function getData(data) {
+    return http().get('/sub_cat/getData?'+ data);
 }
 
 export function createSubCat(data) {

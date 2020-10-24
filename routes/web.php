@@ -21,6 +21,7 @@ Route::get('/blog/popular','UserHomeController@popular');
 Route::get('/blog/recent','UserHomeController@recent');
 Route::get('/blog/allBloglist','UserHomeController@allBloglist');
 Route::get('/blog/searchList','UserHomeController@searchList');
+Route::get('/blog/searchBlog','UserHomeController@searchBlog');
 
 Auth::routes();
 

@@ -87,3 +87,7 @@ export function getLatestBlog(data) {
 export function getSearch(data) {
     return http().get('/blog/searchList?'+ data);
 }
+
+export function getSearchBlog(data) {
+    return http().get('/blog/searchBlog?'+ data);
+}

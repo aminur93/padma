@@ -24,7 +24,7 @@
 
             <button class="btn btn-primary btn-sm float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Search Now</button>
         </nav>
-        <!--/.Navbar blue-->
+        <!--Navbar blue-->
 
         <!--Search Section-->
         <div class="container-fluid search">
@@ -32,22 +32,22 @@
                 <div class="col-md-12">
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            <form action="">
-                                <div class="input-group">
-                                    <input type="text" v-model="search" class="form-control" placeholder="Search this blog">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-secondary" type="button">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
 
-                                <ul v-if="allSearchList.length > 0 && search">
-                                    <li v-for="result in allSearchList.slice(0,10)">
-                                        <div v-text="result.title"></div>
-                                    </li>
-                                </ul>
-                            </form>
+                            <div class="input-group">
+                                <input type="text" v-model="search" class="form-control" placeholder="Search this blog">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" v-on:click="searchBlog()">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <ul class="cat_list" v-if="allSearchList.length > 0 && search">
+                                <li v-for="result in allSearchList.slice(0,10)">
+                                    <div v-show="seen" v-text="result.title" v-on:click="getSearchValue(result.title)" style="cursor: pointer;"></div>
+                                </li>
+                            </ul>
+
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
 
-                            <pagination :pagination="pagination" :offset="5" @paginate="blogList()" v-if="this.pagination.last_page > 1"></pagination>
+                            <pagination :pagination="pagination" :offset="5" @paginate="search === '' ? blogList() : searchBlog()" v-if="this.pagination.last_page > 1"></pagination>
                         </div>
 
                         <div class="col-md-4">
@@ -260,12 +260,20 @@
                     from: '',
                     to: ''
                 },
+                seen: true
             }
         },
 
         watch: {
             search:function (newQ, old) {
-                this.searchList();
+                if (newQ === '')
+                {
+                    this.seen = true;
+                    this.blogList();
+                }else {
+                    this.searchList();
+                }
+
             },
         },
 
@@ -337,17 +345,6 @@
                 }
             },
 
-            configPagination(data) {
-                this.pagination.last_page = data.last_page;
-                this.pagination.current_page = data.current_page;
-                this.pagination.total = data.total;
-                this.pagination.last_page_url = data.last_page_url;
-                this.pagination.next_page_url = data.next_page_url;
-                this.pagination.prev_page_url = data.prev_page_url;
-                this.pagination.from = data.from;
-                this.pagination.to = data.to;
-            },
-
             searchList: async function(){
                 try {
                     let params = new URLSearchParams();
@@ -359,7 +356,41 @@
                 }catch (error){
                     console.log(error);
                 }
-            }
+            },
+
+            getSearchValue: function(title){
+                this.search = title;
+                this.seen = false;
+            },
+
+            searchBlog: async function(){
+                try {
+                    let params = new URLSearchParams();
+                    params.append('search', this.search);
+                    params.append('page', this.pagination.current_page);
+
+                    const response = await blogServices.getSearchBlog(params);
+                    let data = response.data;
+                    this.blogs = response.data.result.data;
+                    this.configPagination(data.result);
+
+                    this.seen = false;
+                }catch (error){
+                    console.log(error);
+                }
+            },
+
+            configPagination(data) {
+                this.pagination.last_page = data.last_page;
+                this.pagination.current_page = data.current_page;
+                this.pagination.total = data.total;
+                this.pagination.last_page_url = data.last_page_url;
+                this.pagination.next_page_url = data.next_page_url;
+                this.pagination.prev_page_url = data.prev_page_url;
+                this.pagination.from = data.from;
+                this.pagination.to = data.to;
+            },
+
         },
     }
 </script>

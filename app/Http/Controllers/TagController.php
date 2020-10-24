@@ -7,11 +7,27 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    public function getData()
+    public function getData(Request $request)
     {
-        $tag = Tag::all();
 
-        return response()->json(['tag' => $tag],200);
+        $columns = ['id', 'tag_name'];
+
+        $length = $request->input('length');
+        $column = $request->input('column'); //Index
+        $dir = $request->input('dir');
+        $searchValue = $request->input('search');
+
+        $query = Tag::select('id', 'tag_name')->orderBy($columns[$column], $dir);
+
+        if ($searchValue) {
+            $query->where(function($query) use ($searchValue) {
+                $query->where('tag_name', 'like', '%' . $searchValue . '%');
+            });
+        }
+
+        $projects = $query->paginate($length);
+
+        return ['data' => $projects, 'draw' => $request->input('draw')];
     }
 
     public function getTotalTag(){

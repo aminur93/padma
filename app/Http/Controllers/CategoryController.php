@@ -9,8 +9,6 @@ class CategoryController extends Controller
 {
     public function getCategory(Request $request)
     {
-        //$categories = category::orderBy('id','DESC')->paginate(10);
-
         $columns = ['id', 'name'];
 
         $length = $request->input('length');
@@ -29,8 +27,6 @@ class CategoryController extends Controller
         $projects = $query->paginate($length);
 
         return ['data' => $projects, 'draw' => $request->input('draw')];
-
-        //return response()->json(['category' => $categories],200);
 
     }
 

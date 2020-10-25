@@ -21,8 +21,8 @@ class SubcategoryController extends Controller
         $sub_cat = DB::table('subcategories')
                     ->select(
                         'subcategories.id as id',
-                        'subcategories.sub_cat_name as sub_cat_name',
-                        'categories.name as name'
+                        'subcategories.sub_cat_name as sub_category_name',
+                        'categories.name as category_name'
                     )
                     ->Join('categories','subcategories.category_id','=','categories.id')
                     ->orderBy($columns[$column], $dir);

@@ -27,7 +27,7 @@
 
                     <div class="card-tools">
                         <router-link to="/add_tag" class="btn btn-primary btn-sm">
-                            <i class="fas fa-plus"></i> Add New Tag
+                            <i class="fas fa-plus"></i> Add New
                         </router-link>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
                 this.sortOrders[key] = this.sortOrders[key] * -1;
                 this.tableData.column = this.getIndex(this.columns, 'name', key);
                 this.tableData.dir = this.sortOrders[key] === 1 ? 'asc' : 'desc';
-                this.getProjects();
+                this.loadtags();
             },
             getIndex(array, key, value) {
                 return array.findIndex(i => i[key] == value)

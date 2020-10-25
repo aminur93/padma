@@ -20,8 +20,8 @@ export function getTag() {
     return http().get('/blog/get_tag');
 }
 
-export function getBlogPost() {
-    return http().get('/blog/getAllBlog');
+export function getBlogPost(data) {
+    return http().get('/blog/getAllBlog?'+ data);
 }
 
 export function getBlogCount() {

@@ -14,29 +14,45 @@ use Image;
 
 class BlogPostController extends Controller
 {
-    public function getBlog()
+    public function getBlog(Request $request)
     {
-        $blog = DB::table('blog_posts')
-                    ->select(
-                        'blog_posts.id as id',
-                        'categories.name as cname',
-                        'subcategories.sub_cat_name as sub_cat_name',
-                        'tags.tag_name as tag_name',
-                        'users.name as uname',
-                        'blog_posts.title as title',
-                        'blog_posts.description as description',
-                        'blog_posts.image as image',
-                        'blog_posts.blog_status as blog_status',
-                        'blog_posts.publish as publish',
-                        'blog_posts.feature as feature'
-                    )
-                    ->Join('categories','blog_posts.category_id','=','categories.id')
+        $columns = ['id', 'image','title','category','sub_category','tag','author','status','publish','feature'];
+
+        $length = $request->input('length');
+        $column = $request->input('column'); //Index
+        $dir = $request->input('dir');
+        $searchValue = $request->input('search');
+
+        $query = DB::table('blog_posts')
+            ->select(
+                'blog_posts.id as id',
+                'categories.name as category',
+                'subcategories.sub_cat_name as sub_category',
+                'tags.tag_name as tag',
+                'users.name as author',
+                'blog_posts.title as title',
+                'blog_posts.description as description',
+                'blog_posts.image as image',
+                'blog_posts.blog_status as status',
+                'blog_posts.publish as publish',
+                'blog_posts.feature as feature'
+            )
+            ->Join('categories','blog_posts.category_id','=','categories.id')
             ->Join('subcategories','blog_posts.sub_cat_id','=','subcategories.id')
             ->Join('tags','blog_posts.tag_id','=','tags.id')
             ->Join('users','blog_posts.author_id','=','users.id')
-            ->get();
+            ->orderBy($columns[$column], $dir);
 
-        return response()->json(['blog_post' => $blog],200);
+        if ($searchValue) {
+            $query->where(function($query) use ($searchValue) {
+                $query->where('title', 'like', '%' . $searchValue . '%');
+            });
+        }
+
+        $projects = $query->paginate($length);
+
+        return ['data' => $projects, 'draw' => $request->input('draw')];
+
     }
 
     public function getBlogCount(){

@@ -27,7 +27,7 @@
 
                     <div class="card-tools">
                         <router-link to="/add_sub_cat" class="btn btn-primary btn-sm">
-                            <i class="fas fa-plus"></i> Add New Sub Category
+                            <i class="fas fa-plus"></i> Add New
                         </router-link>
                     </div>
                 </div>
@@ -54,8 +54,8 @@
                         <tbody>
                         <tr v-show="subCategories.length" v-for="(subCat,index) in subCategories" :key="subCat.id">
                             <td>{{index + 1}}</td>
-                            <td>{{subCat.name }}</td>
-                            <td>{{subCat.sub_cat_name }}</td>
+                            <td>{{subCat.category_name }}</td>
+                            <td>{{subCat.sub_category_name }}</td>
                             <td>
                                 <router-link :to="`/edit_sub_vat/${subCat.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
                                 <button v-on:click="deleteSubCate(subCat)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
@@ -180,7 +180,7 @@
                 this.sortOrders[key] = this.sortOrders[key] * -1;
                 this.tableData.column = this.getIndex(this.columns, 'name', key);
                 this.tableData.dir = this.sortOrders[key] === 1 ? 'asc' : 'desc';
-                this.getProjects();
+                this.loadSubCategories();
             },
             getIndex(array, key, value) {
                 return array.findIndex(i => i[key] == value)

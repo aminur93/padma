@@ -7,13 +7,26 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionsController extends Controller
 {
-    public function getPermission()
+    public function getPermission(Request $request)
     {
-        $permissions = Permission::all();
+        $columns = ['id', 'name'];
 
-        return response()->json([
-            'permission' => $permissions
-        ],200);
+        $length = $request->input('length');
+        $column = $request->input('column'); //Index
+        $dir = $request->input('dir');
+        $searchValue = $request->input('search');
+
+        $query = Permission::select('id', 'name')->orderBy($columns[$column], $dir);
+
+        if ($searchValue) {
+            $query->where(function($query) use ($searchValue) {
+                $query->where('name', 'like', '%' . $searchValue . '%');
+            });
+        }
+
+        $projects = $query->paginate($length);
+
+        return ['data' => $projects, 'draw' => $request->input('draw')];
 
     }
 

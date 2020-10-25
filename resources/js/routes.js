@@ -4,6 +4,7 @@
 
 import AdminHome from './components/admin/AdminHome.vue';
 import UserHome from './components/frontend/UserHome.vue';
+import SingleBlog from './components/frontend/singleblog.vue';
 
 //tag Routes
 import Tag from './components/admin/tags/tag.vue';
@@ -203,8 +204,14 @@ export const routes = [
     {
         path: '/',
         name: 'user-home',
-        component: UserHome
+        component: UserHome,
     },
+
+    {
+        path: '/single_blog/:id',
+        name: 'single-blog',
+        component: SingleBlog
+    }
 ];
 
 

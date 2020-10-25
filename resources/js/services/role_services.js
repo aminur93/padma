@@ -4,8 +4,8 @@
 
 import {http, httpFile} from './http_services';
 
-export function getRole() {
-    return http().get('/roles/getData');
+export function getRole(data) {
+    return http().get('/roles/getData?'+ data);
 }
 
 export function getPermission() {

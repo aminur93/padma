@@ -10,20 +10,35 @@ use DB;
 class RolesController extends Controller
 {
 
-    public function getData(){
+    public function getData(Request $request){
 
-        $role = DB::table('roles')
-                ->select(
-                    'roles.id',
-                    'roles.name as rname',
-                    DB::raw('group_concat(permissions.name) as pname')
-                )
+        $columns = ['id', 'name','permission'];
+
+        $length = $request->input('length');
+        $column = $request->input('column'); //Index
+        $dir = $request->input('dir');
+        $searchValue = $request->input('search');
+
+        $query = DB::table('roles')
+            ->select(
+                'roles.id',
+                'roles.name as name',
+                DB::raw('group_concat(permissions.name) as permission')
+            )
             ->join('role_has_permissions','roles.id','=','role_has_permissions.role_id')
             ->join('permissions','role_has_permissions.permission_id','=','permissions.id')
             ->groupBy('role_has_permissions.role_id')
-            ->get();
+            ->orderBy($columns[$column], $dir);
 
-        return response()->json(['roles' => $role],200);
+        if ($searchValue) {
+            $query->where(function($query) use ($searchValue) {
+                $query->where('roles.name', 'like', '%' . $searchValue . '%');
+            });
+        }
+
+        $projects = $query->paginate($length);
+
+        return ['data' => $projects, 'draw' => $request->input('draw')];
 
     }
 

@@ -27,7 +27,7 @@
 
                     <div class="card-tools">
                         <router-link to="/add" class="btn btn-primary btn-sm">
-                            <i class="fas fa-plus"></i> Add New Category
+                            <i class="fas fa-plus"></i> Add New
                         </router-link>
                     </div>
                 </div>

@@ -4,8 +4,8 @@
 
 import {http, httpFile} from './http_services';
 
-export function getUser() {
-    return http().get('/user/get_user');
+export function getUser(data) {
+    return http().get('/user/get_user?'+ data);
 }
 
 export function getUserCount() {

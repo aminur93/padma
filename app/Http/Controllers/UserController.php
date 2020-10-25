@@ -11,18 +11,36 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-    public function getUser(){
-        $user = DB::table('users')
+    public function getUser(Request $request){
+
+        $columns = ['id', 'name', 'role'];
+
+        $length = $request->input('length');
+        $column = $request->input('column');
+        $dir = $request->input('dir');
+        $searchValue = $request->input('search');
+
+        $query = DB::table('users')
             ->select(
                 'users.id',
-                'users.name as uname',
-                'roles.name as rname'
+                'users.name as name',
+                'roles.name as role'
             )
-            ->join('model_has_roles','users.id','=','model_has_roles.model_id')
-            ->join('roles','model_has_roles.role_id','=','roles.id')
-            ->get();
+            ->Join('model_has_roles','users.id','=','model_has_roles.model_id')
+            ->Join('roles','model_has_roles.role_id','=','roles.id')
+            ->orderBy($columns[$column], $dir);
 
-        return response()->json(['users' => $user],200);
+        if ($searchValue) {
+            $query->where(function($query) use ($searchValue) {
+                $query->where('users.name', 'like', '%' . $searchValue . '%');
+                $query->orwhere('roles.name', 'like', '%' . $searchValue . '%');
+            });
+        }
+
+        $projects = $query->paginate($length);
+
+        return ['data' => $projects, 'draw' => $request->input('draw')];
+
     }
 
     public function getUserCount(){

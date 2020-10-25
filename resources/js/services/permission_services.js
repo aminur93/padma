@@ -1,7 +1,7 @@
 import { http, httpFile } from './http_services';
 
-export function loadPermission() {
-    return http().get('/permission/getData');
+export function loadPermission(data) {
+    return http().get('/permission/getData?'+ data);
 }
 
 export function addPermission(data) {

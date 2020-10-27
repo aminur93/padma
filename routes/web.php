@@ -22,6 +22,8 @@ Route::get('/blog/recent','UserHomeController@recent');
 Route::get('/blog/allBloglist','UserHomeController@allBloglist');
 Route::get('/blog/searchList','UserHomeController@searchList');
 Route::get('/blog/searchBlog','UserHomeController@searchBlog');
+Route::get('/blog/single/{id}','UserHomeController@singleBlog');
+Route::post('/blog/store/comments','CommentsController@storeComments');
 
 Auth::routes();
 
@@ -100,6 +102,4 @@ Route::group(['middleware' => ['auth']], function (){
 
 });
 
-Route::get('/{any}', 'UserHomeController@index')->name('blog')->where('any','.*');
-
-Route::get('/{any}', 'HomeController@index')->name('home')->where('any','.*');
+Route::get('/{any}', 'UserHomeController@index')->name('home')->where('any','.*');

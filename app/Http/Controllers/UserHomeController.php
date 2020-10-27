@@ -153,4 +153,24 @@ class UserHomeController extends Controller
         return response()->json(['result' => $result, 'status_code' => 200],200);
 
     }
+
+    public function singleBlog($id)
+    {
+        $single_blog =DB::table('blog_posts')
+            ->select(
+                'blog_posts.id as id',
+                'blog_posts.title as title',
+                'blog_posts.description as description',
+                'categories.name as cname',
+                'tags.tag_name as tag_name',
+                'users.name as uname'
+            )
+            ->Join('categories','blog_posts.category_id','=','categories.id')
+            ->Join('tags','blog_posts.tag_id','=','tags.id')
+            ->Join('users','blog_posts.author_id','=','users.id')
+            ->where('blog_posts.id',$id)
+            ->first();
+
+        return response()->json(['single_blog_post'=>$single_blog],200);
+    }
 }

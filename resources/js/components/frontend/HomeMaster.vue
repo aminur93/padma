@@ -36,7 +36,7 @@
                             <div class="input-group">
                                 <input type="text" v-model="search" class="form-control" placeholder="Search this blog">
                                 <div class="input-group-append">
-                                    <button class="btn btn-secondary" v-on:click="searchBlog()">
+                                    <button class="btn btn-secondary" v-on:click.prevent="searchBlog()">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
@@ -62,17 +62,17 @@
                 <div class="card-body">
                     <div class="row">
 
-                        <div class="col-md-8" v-if="blogs.length === 0">
+                        <div class="col-md-8" v-if="search === ''">
                             <router-view></router-view>
                         </div>
 
-                        <div class="col-md-8" v-else>
+                        <div class="col-md-8" v-if="search !== ''">
                             <div class="card">
                                 <h5 class="card-header">Blogs</h5>
                                 <div class="card-body">
-                                    <div v-for="(blog,index) in blogs" style="background-color: wheat;margin-top:10px;margin-bottom: 20px;">
+                                    <div v-for="(blog,index) in blogs" :key="blog.id" style="background-color: wheat;margin-top:10px;margin-bottom: 20px;">
 
-                                        <h3><router-link :to="`/single_blog/${blog.id}`">{{ blog.title }}</router-link></h3>
+                                        <h3><router-link :to="{ name: 'single-blog', params: { id: blog.id }}">{{ blog.title }}</router-link></h3>
                                         <p>{{ blog.description | shortlength(500,'...')}}</p>
                                         <span>Author: {{ blog.uname }}</span> | <span>Category: {{ blog.cname }}</span> | <span>Tag: {{ blog.tag_name}}</span>
 
@@ -226,6 +226,7 @@
             this.popularPost();
             this.RecentPost();
             this.loadSubCat();
+            this.blogList();
         },
 
         methods: {
@@ -316,7 +317,6 @@
                     let data = response.data;
                     this.blogs = response.data.result.data;
                     this.configPagination(data.result);
-
                     this.seen = false;
                 }catch (error){
                     console.log(error);

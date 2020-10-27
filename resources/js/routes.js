@@ -210,7 +210,7 @@ export const routes = [
     {
         path: '/single_blog/:id',
         name: 'single-blog',
-        component: SingleBlog
+        component: SingleBlog,
     }
 ];
 

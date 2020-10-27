@@ -91,3 +91,11 @@ export function getSearch(data) {
 export function getSearchBlog(data) {
     return http().get('/blog/searchBlog?'+ data);
 }
+
+export function getSingleBlogPost(id) {
+    return http().get(`/blog/single/${id}`);
+}
+
+export function createComments(data) {
+    return http().post('/blog/store/comments', data);
+}

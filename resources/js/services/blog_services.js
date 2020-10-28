@@ -99,3 +99,11 @@ export function getSingleBlogPost(id) {
 export function createComments(data) {
     return http().post('/blog/store/comments', data);
 }
+
+export function getAllComment(data) {
+    return http().get('/blog/getComments?'+ data);
+}
+
+export function createReply(data) {
+    return http().post('/blog/store/reply', data);
+}

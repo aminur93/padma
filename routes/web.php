@@ -24,6 +24,8 @@ Route::get('/blog/searchList','UserHomeController@searchList');
 Route::get('/blog/searchBlog','UserHomeController@searchBlog');
 Route::get('/blog/single/{id}','UserHomeController@singleBlog');
 Route::post('/blog/store/comments','CommentsController@storeComments');
+Route::get('/blog/getComments','CommentsController@getData');
+Route::post('/blog/store/reply','CommentsController@storeReply');
 
 Auth::routes();
 

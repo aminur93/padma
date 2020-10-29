@@ -173,4 +173,9 @@ class UserHomeController extends Controller
 
         return response()->json(['single_blog_post'=>$single_blog],200);
     }
+
+    public function getCatBlog()
+    {
+
+    }
 }

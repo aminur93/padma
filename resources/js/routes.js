@@ -211,6 +211,18 @@ export const routes = [
         path: '/single_blog/:id',
         name: 'single-blog',
         component: SingleBlog,
+    },
+
+    {
+        path: '/category_blog/:id',
+        name: 'category-blog',
+        component: () => import('./components/frontend/categoryByShow.vue')
+    },
+
+    {
+        path: '/tag_blog/:id',
+        name: 'tag-blog',
+        component: () => import('./components/frontend/tagByShow.vue')
     }
 ];
 

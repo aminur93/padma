@@ -6,7 +6,7 @@
                 <div style="background-color: wheat;margin-top:10px;margin-bottom: 20px;">
 
                     <h3>{{ blogs.title }}</h3>
-                    <p>{{ blogs.description }}</p>
+                    <p v-html="blogs.description"></p>
                     <span>Author: {{ blogs.uname }}</span> | <span>Category: {{ blogs.cname }}</span> | <span>Tag: {{ blogs.tag_name}}</span>
 
                 </div>
@@ -17,71 +17,73 @@
             <div class="card-header">Comments</div>
             <div class="card-body">
 
+                <div v-if="commentData.length > 0" v-for="(comment,index) in commentData" :key="comment.id">
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="http://fakeimg.pl/50x50" class="media-object" style="width:40px">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading title">{{ comment.name }}</h4>
+                            <p class="komen">
+                                {{ comment.description }}
+                                <br>
+                                <a data-toggle="collapse" :href="'#collapseExample-'+ comment.id" role="button" aria-expanded="false" aria-controls="collapseExample">reply</a>
+                            </p>
 
-                <div class="media" v-for="(comment,index) in commentData" :key="comment.cid">
-                    <div class="media-left">
-                        <img src="http://fakeimg.pl/50x50" class="media-object" style="width:40px">
+                            <div class="collapse" :id="'collapseExample-'+ comment.id">
+                                <div class="card card-body">
+                                    <form v-on:submit.prevent="createReply($event)" :id="'comments-'+comment.id">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" v-model="replyData.reply_name" class="form-control" placeholder="Name">
+                                                </div>
+
+                                                <input type="hidden" v-model="replyData.blogId">
+                                                <input type="hidden" v-model="replyData.comment_id">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" v-model="replyData.reply_email" class="form-control" placeholder="Email">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <textarea v-model="replyData.reply_description" cols="10" rows="4" class="form-control" placeholder="Comments Please"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group float-right">
+                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="media-body">
-                        <h4 class="media-heading title">{{ comment.name }}</h4>
-                        <p class="komen">
-                            {{ comment.description }}
-                            <br>
-                            <a data-toggle="collapse" :href="'#collapseExample-'+ comment.id" role="button" aria-expanded="false" aria-controls="collapseExample">reply</a>
-                        </p>
 
-                        <div class="collapse" :id="'collapseExample-'+ comment.id">
-                            <div class="card card-body">
-                                <form v-on:submit.prevent="createReply($event)" :id="'comments-'+comment.id">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" v-model="replyData.reply_name" class="form-control" placeholder="Name">
-                                            </div>
-
-                                            <input type="hidden" v-model="replyData.blogId">
-                                            <input type="hidden" v-model="replyData.comment_id">
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" v-model="replyData.reply_email" class="form-control" placeholder="Email">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <textarea v-model="replyData.reply_description" cols="10" rows="4" class="form-control" placeholder="Comments Please"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <div class="form-group float-right">
-                                                <button type="submit" class="btn btn-success">Submit</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                    <div class="geser" v-for="(reply,index) in replys" :key="reply.id">
+                        <div class="media" v-if="comment.id == reply.comment_id">
+                            <div class="media-left">
+                                <img src="http://fakeimg.pl/50x50" class="media-object" style="width:40px">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading title">{{ reply.reply_name}}</h4>
+                                <p class="komen">
+                                    {{ reply.reply_description }}<br>
+                                    <!--<a href="#">reply</a>-->
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-                <!--<div class="geser">-->
-                    <!--<div class="media">-->
-                        <!--<div class="media-left">-->
-                            <!--<img src="http://fakeimg.pl/50x50" class="media-object" style="width:40px">-->
-                        <!--</div>-->
-                        <!--<div class="media-body">-->
-                            <!--<h4 class="media-heading title">Fahmi Arif</h4>-->
-                            <!--<p class="komen">-->
-                                <!--kalo bisa ya ndak usah gan biar cepet<br>-->
-                                <!--<a href="#">reply</a>-->
-                            <!--</p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div v-if="commentData.length == 0">No Comment Found</div>
 
                 <hr>
 
@@ -144,12 +146,16 @@
                     reply_email: '',
                     reply_description: '',
                 },
+                replys: [],
+
+                ishide: false,
             }
         },
 
         mounted(){
             this.singleBlogPost();
             this.loadComments();
+            this.loadReply();
         },
 
         methods: {
@@ -237,7 +243,28 @@
                     });
 
                     event.target.reset();
+                    this.loadReply();
 
+                    this.replyData.blogId = '';
+                    this.replyData.comment_id = '';
+                    this.replyData.reply_name = '';
+                    this.replyData.reply_email = '';
+                    this.replyData.reply_description = '';
+                }catch (error){
+                    console.log(error);
+                }
+            },
+
+            loadReply: async function(){
+                try {
+                    let id = this.$route.params.id;
+
+                    let params = new URLSearchParams();
+                    params.append('blogs_id', id);
+
+                    const response = await blogServices.getAllReply(params);
+                    console.log(response);
+                    this.replys = response.data.get_reply;
                 }catch (error){
                     console.log(error);
                 }

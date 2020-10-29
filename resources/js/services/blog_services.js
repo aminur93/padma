@@ -107,3 +107,7 @@ export function getAllComment(data) {
 export function createReply(data) {
     return http().post('/blog/store/reply', data);
 }
+
+export function getAllReply(data) {
+    return http().get('/blog/getReply?'+ data);
+}

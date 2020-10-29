@@ -88,4 +88,31 @@ class CommentsController extends Controller
             }
         }
     }
+
+    public function getReply(Request $request)
+    {
+        $id = $request->input('blogs_id');
+
+        $comments = Comments::where('blog_id',$id)->get();
+
+        $reply = Reply::get();
+
+        $reply_array = [];
+
+        foreach ($comments as $comment)
+        {
+            foreach ($reply as $rep)
+            {
+                if ($comment->id == $rep->comment_id)
+                {
+                    $reply_array[] = $rep;
+                }
+            }
+        }
+
+        return response()->json([
+            'get_reply' => $reply_array,
+            'status_code' => 200
+        ],200);
+    }
 }

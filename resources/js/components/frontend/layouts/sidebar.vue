@@ -7,7 +7,7 @@
                 <div class="container">
                     <div class="row">
                         <ul class="cat_list">
-                            <li v-for="(category,index) in categories"><router-link to="" class="link">{{ category.name }} <span class="badge badge-primary badge-pill">12</span></router-link></li>
+                            <li v-for="(category,index) in categories"><router-link :to="`/category_blog/${category.id}`" class="link">{{ category.name }} <span class="badge badge-primary badge-pill">12</span></router-link></li>
                         </ul>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="container">
                     <div class="row">
                         <ul class="cat_list">
-                            <li v-for="(tag,index) in tags"><router-link to="" class="link">{{ tag.tag_name }} <span class="badge badge-primary badge-pill">12</span></router-link></li>
+                            <li v-for="(tag,index) in tags"><router-link :to="`/tag_blog/${tag.id}`" class="link">{{ tag.tag_name }} <span class="badge badge-primary badge-pill">12</span></router-link></li>
                         </ul>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
             <div class="card-body">
                 <div v-for="(pop,index) in popular" style="background-color: wheat;margin:5px;">
 
-                    <h6><router-link to="">{{ pop.title }}</router-link></h6>
+                    <h6><router-link :to="`/single_blog/${pop.id}`">{{ pop.title }}</router-link></h6>
                     <p>{{ pop.description | shortlength(50,'...') }}</p>
                     <span>{{ pop.uname }}</span> | <span>{{ pop.cname }}</span> | <span>{{ pop.tag_name}}</span>
 
@@ -46,7 +46,7 @@
             <div class="card-body">
                 <div v-for="(rec,index) in recent" style="background-color: wheat;margin:5px;">
 
-                    <h6><router-link to="">{{ rec.title }}</router-link></h6>
+                    <h6><router-link :to="`/single_blog/${rec.id}`">{{ rec.title }}</router-link></h6>
                     <p>{{ rec.description | shortlength(50,'...') }}</p>
                     <span>{{ rec.uname }}</span> | <span>{{ rec.cname }}</span> | <span>{{ rec.tag_name}}</span>
 

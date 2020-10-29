@@ -29,4 +29,6 @@
 - comments system with vuejs component
 - user login and register 
 - user portal 
+- post comments system
+- comments reply system
 

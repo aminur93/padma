@@ -66,13 +66,13 @@
                             <router-view></router-view>
                         </div>
 
-                        <div class="col-md-8" v-if="search !== ''">
+                        <div class="col-md-8" v-if="search !== '' && search">
                             <div class="card">
                                 <h5 class="card-header">Blogs</h5>
                                 <div class="card-body">
                                     <div v-for="(blog,index) in blogs" :key="blog.id" style="background-color: wheat;margin-top:10px;margin-bottom: 20px;">
 
-                                        <h3><router-link :to="{ name: 'single-blog', params: { id: blog.id }}">{{ blog.title }}</router-link></h3>
+                                        <h3><router-link :to="`/single_blog/${blog.id}`" replace>{{ blog.title }}</router-link></h3>
                                         <p>{{ blog.description | shortlength(500,'...')}}</p>
                                         <span>Author: {{ blog.uname }}</span> | <span>Category: {{ blog.cname }}</span> | <span>Tag: {{ blog.tag_name}}</span>
 
@@ -85,7 +85,7 @@
 
 
                         <div class="col-md-4">
-                            <sidebar :categories="categories" :tags="tags" :popular="popular" :recent="recent"></sidebar>
+                            <sidebar :categories="categories" :tags="tags" :popular="popular" :recent="recent" @populars="blogList()"></sidebar>
                         </div>
                     </div>
                 </div>
@@ -216,7 +216,6 @@
                 }else {
                     this.searchList();
                 }
-
             },
         },
 

@@ -1,12 +1,8 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-import VueRouter from 'vue-router';
 import store from './store';
-
-Vue.use(VueRouter);
-
-import {routes} from './routes';
+import router from './routes'
 
 import VueSweetalert2 from 'vue-sweetalert2';
 
@@ -22,16 +18,16 @@ Vue.component('admin-main', () => import("./components/admin/AdminMaster.vue"));
 
 Vue.component('home-main', ()=> import("./components/frontend/HomeMaster.vue"));
 
-const router = new VueRouter({
-    routes,
-    mode: 'history',
-    linkActiveClass: 'active',
-    linkExactActiveClass: 'active'
-});
+// const router = new VueRouter({
+//     routes,
+//     mode: 'history',
+//     linkActiveClass: 'active',
+//     linkExactActiveClass: 'active'
+// });
 
 
 const app = new Vue({
     el: '#app',
-    router: router,
+    router,
     store
 });

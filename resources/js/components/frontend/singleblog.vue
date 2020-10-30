@@ -152,8 +152,19 @@
             }
         },
 
-        mounted(){
+        watch: {
+            $route() {
+                this.singleBlogPost(this.$route.params.id);
+                this.loadComments(this.$route.params.id);
+                this.loadReply(this.$route.params.id);
+            }
+        },
+
+        created(){
             this.singleBlogPost();
+        },
+
+        mounted(){
             this.loadComments();
             this.loadReply();
         },
@@ -161,6 +172,7 @@
         methods: {
             singleBlogPost: async function(){
                 try {
+                    console.log(this.$route.path);
                     let id = this.$route.params.id;
                     const  response = await blogServices.getSingleBlogPost(id);
                     this.blogs = response.data.single_blog_post;
@@ -263,7 +275,6 @@
                     params.append('blogs_id', id);
 
                     const response = await blogServices.getAllReply(params);
-                    console.log(response);
                     this.replys = response.data.get_reply;
                 }catch (error){
                     console.log(error);

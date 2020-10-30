@@ -50,17 +50,17 @@
         },
         computed: {
             pages() {
-                let pages = []
+                let pages = [];
                 let from = this.pagination.current_page - Math.floor(this.offset / 2)
                 if (from < 1) {
                     from = 1
                 }
-                let to = from + this.offset -1
+                let to = from + this.offset -1;
                 if (to > this.pagination.last_page) {
                     to = this.pagination.last_page
                 }
                 while (from <= to) {
-                    pages.push(from)
+                    pages.push(from);
                     from++
                 }
                 return pages

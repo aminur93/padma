@@ -30,9 +30,9 @@
         <div class="card">
             <h5 class="card-header">Popular Post</h5>
             <div class="card-body">
-                <div v-for="(pop,index) in popular" style="background-color: wheat;margin:5px;">
+                <div v-for="(pop,index) in popular" :key="pop.id" style="background-color: wheat;margin:5px;">
 
-                    <h6><router-link :to="`/single_blog/${pop.id}`">{{ pop.title }}</router-link></h6>
+                    <h6><router-link :to="`/single_blog/${pop.id}`" replace>{{ pop.title }}</router-link></h6>
                     <p>{{ pop.description | shortlength(50,'...') }}</p>
                     <span>{{ pop.uname }}</span> | <span>{{ pop.cname }}</span> | <span>{{ pop.tag_name}}</span>
 
@@ -46,7 +46,7 @@
             <div class="card-body">
                 <div v-for="(rec,index) in recent" style="background-color: wheat;margin:5px;">
 
-                    <h6><router-link :to="`/single_blog/${rec.id}`">{{ rec.title }}</router-link></h6>
+                    <h6><router-link :to="`/single_blog/${rec.id}`" replace>{{ rec.title }}</router-link></h6>
                     <p>{{ rec.description | shortlength(50,'...') }}</p>
                     <span>{{ rec.uname }}</span> | <span>{{ rec.cname }}</span> | <span>{{ rec.tag_name}}</span>
 
@@ -69,7 +69,7 @@
 
 <script>
     export default{
-        props: ['categories','tags','popular','recent'],
+        props: ['categories','tags','popular','recent']
     }
 </script>
 

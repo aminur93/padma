@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'UserHomeController@index')->name('blog');
+
+
+//Route::get('/', 'UserHomeController@index')->name('blog');
+
 Route::get('/category/getCat','CategoryController@getCat');
 Route::get('/tag/getTag','UserHomeController@getTag');
 Route::get('/subcategory/getSubCategory','UserHomeController@getSubCategory');
@@ -106,4 +109,9 @@ Route::group(['middleware' => ['auth']], function (){
 
 });
 
-Route::get('/{any}', 'UserHomeController@index')->name('home')->where('any','.*');
+
+//Route::any('/{any}', 'UserHomeController@index')->where('any','.*');
+
+Route::any('{any}', function () {
+    return view('front.index');
+})->where('any', '.*');

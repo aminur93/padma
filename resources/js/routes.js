@@ -2,9 +2,13 @@
  * Created by aminur on 9/21/20.
  */
 
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+
 import AdminHome from './components/admin/AdminHome.vue';
 import UserHome from './components/frontend/UserHome.vue';
-import SingleBlog from './components/frontend/singleblog.vue';
 
 //tag Routes
 import Tag from './components/admin/tags/tag.vue';
@@ -41,7 +45,8 @@ import User from './components/admin/user/user.vue';
 import AddUser from './components/admin/user/add_user.vue';
 import EditUser from './components/admin/user/edit_user.vue';
 
-export const routes = [
+
+const routes = [
 
     {
         path: '/home',
@@ -210,7 +215,8 @@ export const routes = [
     {
         path: '/single_blog/:id',
         name: 'single-blog',
-        component: SingleBlog,
+        component: () => import('./components/frontend/singleblog.vue'),
+        props: true
     },
 
     {
@@ -225,6 +231,14 @@ export const routes = [
         component: () => import('./components/frontend/tagByShow.vue')
     }
 ];
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: routes,
+    linkActiveClass: 'active'
+});
+
+export default router;
 
 
 

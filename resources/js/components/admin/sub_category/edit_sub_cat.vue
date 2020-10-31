@@ -9,7 +9,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><router-link to="/sub_categories">Sub Category</router-link></li>
+                            <li class="breadcrumb-item"><router-link to="/home/sub_categories">Sub Category</router-link></li>
                             <li class="breadcrumb-item active">Edit Sub Category</li>
                         </ol>
                     </div>
@@ -39,7 +39,7 @@
                         <div class="invalid-feedback" v-if="errors.sub_cat_name">{{ errors.sub_cat_name[0] }}</div>
                     </div>
 
-                    <router-link to="/sub_categories" class="btn btn-info">Back</router-link>
+                    <router-link to="/home/sub_categories" class="btn btn-info">Back</router-link>
                     <button type="submit" class="btn btn-success">Edit</button>
                 </form>
             </div>

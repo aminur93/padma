@@ -26,7 +26,7 @@
                     <h3 class="card-title">Blog Post Management</h3>
 
                     <div class="card-tools">
-                        <router-link to="/add_post" class="btn btn-primary btn-sm">
+                        <router-link to="/home/add_post" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> Add New
                         </router-link>
                     </div>
@@ -90,7 +90,7 @@
                                 </template>
                             </td>
                             <td>
-                                <router-link :to="`/edit_post/${blog.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                <router-link :to="`/home/edit_post/${blog.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
 
                                 <button v-if="blog.status == 0" v-on:click="approve(blog)" class="btn btn-secondary btn-sm"><i class="fa fa-check"></i></button>
                                 <button v-if="blog.status == 1" v-on:click="Unapprove(blog)" class="btn btn-secondary btn-sm"><i class="fa fa-times"></i></button>

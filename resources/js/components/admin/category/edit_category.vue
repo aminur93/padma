@@ -30,7 +30,7 @@
                         <div class="invalid-feedback" v-if="errors.name">{{ errors.name[0] }}</div>
                     </div>
 
-                    <router-link to="/category" class="btn btn-info">Back</router-link>
+                    <router-link to="/home/category" class="btn btn-info">Back</router-link>
                     <button type="submit" class="btn btn-success">Edit</button>
                 </form>
             </div>

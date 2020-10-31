@@ -30,7 +30,7 @@
                         <div class="invalid-feedback" v-if="errors.name">{{ errors.name[0] }}</div>
                     </div>
 
-                    <router-link to="/permission" class="btn btn-info">Back</router-link>
+                    <router-link to="/home/permission" class="btn btn-info">Back</router-link>
                     <button type="submit" class="btn btn-success">Edit</button>
                 </form>
             </div>

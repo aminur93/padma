@@ -18,14 +18,6 @@ Vue.component('admin-main', () => import("./components/admin/AdminMaster.vue"));
 
 Vue.component('home-main', ()=> import("./components/frontend/HomeMaster.vue"));
 
-// const router = new VueRouter({
-//     routes,
-//     mode: 'history',
-//     linkActiveClass: 'active',
-//     linkExactActiveClass: 'active'
-// });
-
-
 const app = new Vue({
     el: '#app',
     router,

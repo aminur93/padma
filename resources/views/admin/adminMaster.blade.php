@@ -92,28 +92,28 @@
 
 
                     <li class="nav-item has-treeview">
-                        <router-link to="/category" class="nav-link" exact>
+                        <router-link to="/home/category" class="nav-link" exact>
                             <i class="nav-icon fas fa-list"></i>
                             <p>Category</p>
                         </router-link>
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <router-link to="/sub_categories" class="nav-link" exact>
+                        <router-link to="/home/sub_categories" class="nav-link" exact>
                             <i class="nav-icon fa fa-list-alt"></i>
                             <p>Sub Category</p>
                         </router-link>
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <router-link to="/tag" class="nav-link" exact>
+                        <router-link to="/home/tag" class="nav-link" exact>
                             <i class="nav-icon fas fa-tags"></i>
                             <p>Tag</p>
                         </router-link>
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <router-link to="/blog_post" class="nav-link" exact>
+                        <router-link to="/home/blog_post" class="nav-link" exact>
                             <i class="nav-icon fas fa-bacon"></i>
                             <p>Blog Post</p>
                         </router-link>
@@ -130,21 +130,21 @@
 
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <router-link to="/user" class="nav-link">
+                                <router-link to="/home/user" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Users</p>
                                 </router-link>
                             </li>
 
                             <li class="nav-item">
-                                <router-link to="/role" class="nav-link">
+                                <router-link to="/home/role" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Roles</p>
                                 </router-link>
                             </li>
 
                             <li class="nav-item">
-                                <router-link to="/permission" class="nav-link">
+                                <router-link to="/home/permission" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Permissions</p>
                                 </router-link>

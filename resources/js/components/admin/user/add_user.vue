@@ -9,7 +9,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><router-link to="/user">User</router-link></li>
+                            <li class="breadcrumb-item"><router-link to="/home/user">User</router-link></li>
                             <li class="breadcrumb-item active">Add User</li>
                         </ol>
                     </div>
@@ -59,7 +59,7 @@
                         <div class="invalid-feedback" v-if="errors.role">{{ errors.role[0] }}</div>
                     </div>
 
-                    <router-link to="/user" class="btn btn-info">Back</router-link>
+                    <router-link to="/home/user" class="btn btn-info">Back</router-link>
                     <button type="submit" class="btn btn-success">Save</button>
                 </form>
             </div>

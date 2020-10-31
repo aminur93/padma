@@ -26,7 +26,7 @@
                     <h3 class="card-title">Sub Category Management</h3>
 
                     <div class="card-tools">
-                        <router-link to="/add_sub_cat" class="btn btn-primary btn-sm">
+                        <router-link to="/home/add_sub_cat" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> Add New
                         </router-link>
                     </div>
@@ -57,7 +57,7 @@
                             <td>{{subCat.category_name }}</td>
                             <td>{{subCat.sub_category_name }}</td>
                             <td>
-                                <router-link :to="`/edit_sub_vat/${subCat.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                <router-link :to="`/home/edit_sub_vat/${subCat.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
                                 <button v-on:click="deleteSubCate(subCat)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>

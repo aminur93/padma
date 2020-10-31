@@ -26,7 +26,7 @@
                     <h3 class="card-title">Role Management</h3>
 
                     <div class="card-tools">
-                        <router-link to="/add_role" class="btn btn-primary btn-sm">
+                        <router-link to="/home/add_role" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> Add New
                         </router-link>
                     </div>
@@ -60,7 +60,7 @@
                             <td>{{ role.name }}</td>
                             <td><span class="badge badge-success">{{ role.permission }}</span></td>
                             <td>
-                                <router-link :to="`/edit_role/${role.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                <router-link :to="`/home/edit_role/${role.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
                                 <button v-on:click="deleteTags(role)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>

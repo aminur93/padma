@@ -26,7 +26,7 @@
                     <h3 class="card-title">User Management</h3>
 
                     <div class="card-tools">
-                        <router-link to="/add_user" class="btn btn-primary btn-sm">
+                        <router-link to="/home/add_user" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> Add New
                         </router-link>
                     </div>
@@ -60,7 +60,7 @@
                             <td>{{user.name }}</td>
                             <td>{{user.role }}</td>
                             <td>
-                                <router-link :to="`/edit_user/${user.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                <router-link :to="`/home/edit_user/${user.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
                                 <button v-on:click="deleteUser(user)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>

@@ -26,7 +26,7 @@
                     <h3 class="card-title">Tag Management</h3>
 
                     <div class="card-tools">
-                        <router-link to="/add_tag" class="btn btn-primary btn-sm">
+                        <router-link to="/home/add_tag" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> Add New
                         </router-link>
                     </div>
@@ -59,7 +59,7 @@
                             <td>{{index + 1}}</td>
                             <td>{{tag.tag_name }}</td>
                             <td>
-                                <router-link :to="`/edit_tag/${tag.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                <router-link :to="`/home/edit_tag/${tag.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
                                 <button v-on:click="deleteTags(tag)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>

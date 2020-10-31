@@ -88,7 +88,7 @@
                         </div>
                     </div>
 
-                    <router-link to="/blog_post" class="btn btn-info">Back</router-link>
+                    <router-link to="/home/blog_post" class="btn btn-info">Back</router-link>
                     <button type="submit" class="btn btn-success">Save</button>
                 </form>
             </div>

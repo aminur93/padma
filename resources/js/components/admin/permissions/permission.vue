@@ -26,7 +26,7 @@
                     <h3 class="card-title">Permission Management</h3>
 
                     <div class="card-tools">
-                        <router-link to="/add_permission" class="btn btn-primary btn-sm">
+                        <router-link to="/home/add_permission" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> Add New
                         </router-link>
                     </div>
@@ -59,7 +59,7 @@
                             <td>{{index + 1}}</td>
                             <td>{{permission.name }}</td>
                             <td>
-                                <router-link :to="`/edit_permission/${permission.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                <router-link :to="`/home/edit_permission/${permission.id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
                                 <button v-on:click="deletePermission(permission)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>

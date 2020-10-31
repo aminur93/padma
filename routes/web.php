@@ -31,6 +31,7 @@ Route::get('/blog/getComments','CommentsController@getData');
 Route::post('/blog/store/reply','CommentsController@storeReply');
 Route::get('/blog/getReply','CommentsController@getReply');
 Route::get('/getCategoryByBlog','UserHomeController@getCatBlog');
+Route::get('/getTagByBlog','UserHomeController@getTagBlog');
 
 Auth::routes();
 

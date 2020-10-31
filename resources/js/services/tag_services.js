@@ -35,3 +35,7 @@ export function updateTag(id, data) {
 export function deleteTag(id) {
     return http().delete(`/tag/destroy/${id}`);
 }
+
+export function getTagIdByBlog(data) {
+    return http().get('/getTagByBlog?'+ data);
+}

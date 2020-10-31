@@ -4,8 +4,9 @@
         <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #263238;">
             <router-link style="color:white;" class="navbar-brand" to="/">Blog Vuejs</router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="fas fa-bars" style="color: white"></span>
             </button>
+            <button class="btn btn-primary btn-sm float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Search Now</button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
@@ -21,8 +22,6 @@
                     </li>
                 </ul>
             </div>
-
-            <button class="btn btn-primary btn-sm float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Search Now</button>
         </nav>
         <!--Navbar blue-->
 
@@ -66,13 +65,13 @@
                             <router-view></router-view>
                         </div>
 
-                        <div class="col-md-8" v-if="search !== '' && search">
+                        <div class="col-md-8" v-if="search !== '' ">
                             <div class="card">
                                 <h5 class="card-header">Blogs</h5>
                                 <div class="card-body">
                                     <div v-for="(blog,index) in blogs" :key="blog.id" style="background-color: wheat;margin-top:10px;margin-bottom: 20px;">
 
-                                        <h3><router-link :to="`/single_blog/${blog.id}`" replace>{{ blog.title }}</router-link></h3>
+                                        <h3 v-on:click="reload()"><router-link :to="`/single_blog/${blog.id}`" replace>{{ blog.title }}</router-link></h3>
                                         <p>{{ blog.description | shortlength(500,'...')}}</p>
                                         <span>Author: {{ blog.uname }}</span> | <span>Category: {{ blog.cname }}</span> | <span>Tag: {{ blog.tag_name}}</span>
 
@@ -82,7 +81,6 @@
 
                             <pagination :pagination="pagination" :offset="5" @paginate="blogList()" v-if="this.pagination.last_page > 1"></pagination>
                         </div>
-
 
                         <div class="col-md-4">
                             <sidebar :categories="categories" :tags="tags" :popular="popular" :recent="recent" @populars="blogList()"></sidebar>
@@ -225,7 +223,6 @@
             this.popularPost();
             this.RecentPost();
             this.loadSubCat();
-            this.blogList();
         },
 
         methods: {
@@ -332,6 +329,10 @@
                 this.pagination.from = data.from;
                 this.pagination.to = data.to;
             },
+
+            reload(){
+                this.search = '';
+            }
         },
     }
 </script>

@@ -35,3 +35,7 @@ export function getEditCategory(id) {
 export function updateCategory(id, data) {
     return http().post(`/category/update/${id}`, data);
 }
+
+export function getCategoryIdByBlog(data) {
+    return http().get('/getCategoryByBlog?'+ data);
+}

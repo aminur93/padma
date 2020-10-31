@@ -156,7 +156,7 @@ class UserHomeController extends Controller
 
     public function singleBlog($id)
     {
-        $single_blog =DB::table('blog_posts')
+        $single_blog = DB::table('blog_posts')
             ->select(
                 'blog_posts.id as id',
                 'blog_posts.title as title',
@@ -174,8 +174,53 @@ class UserHomeController extends Controller
         return response()->json(['single_blog_post'=>$single_blog],200);
     }
 
-    public function getCatBlog()
+    public function getCatBlog(Request $request)
     {
+        $category_id = $request->input('categoryId');
 
+        $catByBlog = DB::table('blog_posts')
+            ->select(
+                'blog_posts.id as id',
+                'blog_posts.title as title',
+                'blog_posts.description as description',
+                'categories.name as cname',
+                'tags.tag_name as tag_name',
+                'users.name as uname'
+            )
+            ->Join('categories','blog_posts.category_id','=','categories.id')
+            ->Join('tags','blog_posts.tag_id','=','tags.id')
+            ->Join('users','blog_posts.author_id','=','users.id')
+            ->where('blog_posts.category_id',$category_id)
+            ->paginate(5);
+
+        return response()->json([
+            'get_categoryId_by_blog' => $catByBlog,
+            'status_code' => 200
+        ],200);
+    }
+
+    public function getTagBlog(Request $request)
+    {
+        $tag_id = $request->input('tag_id');
+
+        $tagByBlog = DB::table('blog_posts')
+            ->select(
+                'blog_posts.id as id',
+                'blog_posts.title as title',
+                'blog_posts.description as description',
+                'categories.name as cname',
+                'tags.tag_name as tag_name',
+                'users.name as uname'
+            )
+            ->Join('categories','blog_posts.category_id','=','categories.id')
+            ->Join('tags','blog_posts.tag_id','=','tags.id')
+            ->Join('users','blog_posts.author_id','=','users.id')
+            ->where('blog_posts.tag_id',$tag_id)
+            ->paginate(5);
+
+        return response()->json([
+            'get_tagId_by_blog' => $tagByBlog,
+            'status_code' => 200
+        ],200);
     }
 }
